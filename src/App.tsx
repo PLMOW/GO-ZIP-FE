@@ -1,9 +1,10 @@
-import Router from './Router';
 import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 import { darkTheme, lightTheme } from 'theme';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import GlobalStyle from 'libs/client/GlobalStyle';
+import Router from './Router';
 import Nav from 'components/partials/Nav/Nav';
 
 function App() {
@@ -11,9 +12,11 @@ function App() {
 
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-      <GlobalStyle />
-      <Nav />
-      <Router />
+      <BrowserRouter>
+        <GlobalStyle />
+        <Nav />
+        <Router />
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
