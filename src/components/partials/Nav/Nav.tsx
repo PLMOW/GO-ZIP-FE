@@ -6,8 +6,8 @@ const Nav = () => {
   return (
     <Container>
       <NavLink value={'Home'} href={'/'} />
-      <NavLink value={'LogIn'} href={'/user/login'} />
-      <NavLink value={'SignIn'} href={'/user/create'} />
+      <NavLink value={'LogIn'} href={'/login'} />
+      <NavLink value={'SignIn'} href={'/signin'} />
       <ToggleBtn />
     </Container>
   );
