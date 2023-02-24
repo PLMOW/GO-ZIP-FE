@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import createUser from 'libs/client/api/createUser';
 import { motion } from 'framer-motion';
+import Label from 'components/form/Label';
 
 interface FormState {
   signInEmail: string;
@@ -32,12 +33,7 @@ const Signin = () => {
       <TopWrapper>
         <Title>Sign in</Title>
         <Form onSubmit={handleSubmit(onValid)}>
-          <FormText>
-            <div>Email</div>
-            <ErrorMessage>
-              {errors.signInEmail ? errors.signInEmail.message : null}
-            </ErrorMessage>
-          </FormText>
+          <Label value="Email" errorMessage={errors.signInEmail?.message} />
           <Input
             errorId={!!errors.signInEmail}
             {...register('signInEmail', {
@@ -61,12 +57,10 @@ const Signin = () => {
             placeholder="Email"
           />
 
-          <FormText>
-            <div>NickName</div>
-            <ErrorMessage>
-              {errors.signInNickname ? errors.signInNickname.message : null}
-            </ErrorMessage>
-          </FormText>
+          <Label
+            value="Nickname"
+            errorMessage={errors.signInNickname?.message}
+          />
           <Input
             errorId={!!errors.signInNickname}
             {...register('signInNickname', {
@@ -84,12 +78,11 @@ const Signin = () => {
             type="text"
             placeholder="NickName"
           />
-          <FormText>
-            <div>PW</div>
-            <ErrorMessage>
-              {errors.signInPassword ? errors.signInPassword.message : null}
-            </ErrorMessage>
-          </FormText>
+
+          <Label
+            value="Password"
+            errorMessage={errors.signInPassword?.message}
+          />
 
           <Input
             errorId={!!errors.signInPassword}
@@ -116,17 +109,6 @@ const Signin = () => {
 };
 
 export default Signin;
-
-const FormText = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const ErrorMessage = styled.div`
-  color: ${({ theme }) => theme.pointColor};
-  font-weight: 600;
-  font-size: 0.9rem;
-`;
 
 const BottomWrapper = styled.div`
   display: flex;
