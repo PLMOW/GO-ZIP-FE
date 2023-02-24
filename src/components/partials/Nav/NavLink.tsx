@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
 interface navLinkProps {
@@ -9,18 +10,18 @@ interface navLinkProps {
 
 const NavLink = ({ href, value }: navLinkProps) => {
   const [isHover, setIsHover] = useState(false);
-  const router = window.location.pathname;
+  const router = useLocation();
 
   return (
     <Wrapper
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
-      <a href={href}>
+      <Link to={href}>
         <Btn>{value}</Btn>
-      </a>
+      </Link>
       <AnimatePresence>
-        {!isHover && router === href ? (
+        {!isHover && router.pathname === href ? (
           <Dot
             layoutId={href}
             variants={hoverVariants}
@@ -63,7 +64,7 @@ const Dot = styled(motion.div)`
   width: 20%;
   height: 3px;
   border-radius: 3px;
-  background: ${({ theme }) => theme.color};
+  background: ${({ theme }) => theme.pointColor};
 `;
 
 const Dash = styled(motion.div)`
