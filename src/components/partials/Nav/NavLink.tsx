@@ -64,7 +64,7 @@ const Dot = styled(motion.div)`
   width: 20%;
   height: 3px;
   border-radius: 3px;
-  background: ${({ theme }) => theme.color};
+  background: ${({ theme }) => theme.pointColor};
 `;
 
 const Dash = styled(motion.div)`
