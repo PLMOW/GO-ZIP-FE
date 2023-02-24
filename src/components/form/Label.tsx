@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-
-interface LabelProps {
-  value: 'Email' | 'Nickname' | 'Password';
-  errorMessage: string | undefined;
-}
+import { LabelProps } from 'libs/client/types/formType';
 
 const Label = ({ value, errorMessage }: LabelProps) => {
   return (
