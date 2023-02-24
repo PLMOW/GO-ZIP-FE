@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import createUser from 'libs/client/api/createUser';
 import { motion } from 'framer-motion';
-import Label from 'components/form/Label';
 import { FormState } from 'libs/client/types/formType';
 import ReactHookInput from 'components/form/ReactHookInput';
 
@@ -13,13 +12,8 @@ const Signin = () => {
     formState: { errors },
   } = useForm<FormState>();
 
-  const onValid = async (data: any) => {
-    const {
-      signInEmail: email,
-      signInNickname: nickname,
-      signInPassword: password,
-    } = data;
-
+  const onValid = async (data: FormState) => {
+    const { email, nickname, password } = data;
     const res = await createUser({ email, nickname, password });
     console.log(`res : ${res}`);
   };
@@ -32,19 +26,19 @@ const Signin = () => {
           <ReactHookInput
             type="Email"
             register={register}
-            errorMessage={errors.signInEmail?.message}
+            errorMessage={errors.email?.message}
           />
 
           <ReactHookInput
             type="Nickname"
             register={register}
-            errorMessage={errors.signInNickname?.message}
+            errorMessage={errors.nickname?.message}
           />
 
           <ReactHookInput
             type="Password"
             register={register}
-            errorMessage={errors.signInPassword?.message}
+            errorMessage={errors.password?.message}
           />
 
           <Submit>create</Submit>
@@ -76,14 +70,6 @@ const SocialText = styled.div`
   margin-bottom: 10px;
   font-weight: 600;
   opacity: 0.7;
-`;
-
-const SocialContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  margin-top: 20px;
 `;
 
 const TopWrapper = styled.div`
@@ -129,25 +115,6 @@ const Form = styled.form`
   justify-content: space-between;
   margin-top: 50px;
   margin-bottom: 20px;
-`;
-
-const Input = styled.input<{ errorId: boolean }>`
-  padding: 15px;
-  font-size: 18px;
-  margin-bottom: 10px;
-  border: none;
-  background: none;
-  font-weight: 600;
-  border-bottom: solid 2px
-    ${(props) => (props.errorId ? props.theme.pointColor : props.theme.color)};
-  transition: ${({ theme }) => theme.transitionOption};
-  border-radius: 10px 10px 0 0;
-  color: ${({ theme }) => theme.color};
-  :focus {
-    outline: none;
-    color: ${({ theme }) => theme.background};
-    background: ${({ theme }) => theme.color};
-  }
 `;
 
 const Submit = styled.button`
