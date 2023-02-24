@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import themeToggleReducer from './modules/themeToggle';
+import themeToggle from './modules/themeToggle';
 
 const store = configureStore({
-  reducer: { themeToggleReducer },
+  reducer: { themeToggle },
 });
 
+export type RootState = ReturnType<typeof store.getState>;
 export default store;

@@ -1,11 +1,17 @@
 import Router from './Router';
-import { Provider } from 'react-redux';
-import store from 'redux/store';
+import { ThemeProvider } from 'styled-components';
+import { darkTheme, lightTheme } from '../theme';
+import { Provider, useSelector } from 'react-redux';
+import store, { RootState } from 'redux/store';
 
 function App() {
+  const isDark = useSelector<RootState>((state) => state.themeToggle);
+
   return (
     <Provider store={store}>
-      <Router />
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <Router />
+      </ThemeProvider>
     </Provider>
   );
 }
