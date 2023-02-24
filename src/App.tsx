@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { darkTheme, lightTheme } from 'theme';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
-import GlobalStyle from 'libs/client/GlobalStyle';
+import GlobalStyle from 'libs/client/style/GlobalStyle';
 import Router from './Router';
 import Nav from 'components/partials/Nav/Nav';
 
