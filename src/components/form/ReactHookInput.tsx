@@ -6,7 +6,7 @@ const EmailInput = ({ type, register, errorMessage }: InputProps) => {
   return (
     <Wrapper>
       <Label value={type} errorMessage={errorMessage} />
-      {type === 'Email' ? (
+      {type === 'Email' || type === '이메일' ? (
         <Input
           errorId={!!errorMessage}
           {...register('email', {
@@ -27,9 +27,9 @@ const EmailInput = ({ type, register, errorMessage }: InputProps) => {
             },
           })}
           type="text"
-          placeholder="Email"
+          placeholder={type}
         />
-      ) : type === 'Nickname' ? (
+      ) : type === 'Nickname' || type === '닉네임' ? (
         <Input
           errorId={!!errorMessage}
           {...register('nickname', {
@@ -45,7 +45,7 @@ const EmailInput = ({ type, register, errorMessage }: InputProps) => {
             },
           })}
           type="text"
-          placeholder="Nickname"
+          placeholder={type}
         />
       ) : (
         <Input
@@ -58,7 +58,7 @@ const EmailInput = ({ type, register, errorMessage }: InputProps) => {
             },
           })}
           type="password"
-          placeholder="Password"
+          placeholder={type}
         />
       )}
     </Wrapper>
@@ -78,16 +78,16 @@ const Input = styled.input<{ errorId: boolean }>`
   font-size: 18px;
   margin-bottom: 10px;
   border: none;
-  background: none;
   font-weight: 600;
   border-bottom: solid 2px
-    ${(props) => (props.errorId ? props.theme.pointColor : props.theme.color)};
+    ${(props) =>
+      props.errorId ? props.theme.pointColor : 'rgba(133,133,133,0.5)'};
   transition: ${({ theme }) => theme.transitionOption};
   border-radius: 10px 10px 0 0;
   color: ${({ theme }) => theme.color};
+  background: transparent;
   :focus {
     outline: none;
-    color: ${({ theme }) => theme.background};
-    background: ${({ theme }) => theme.color};
+    border-bottom: solid 2px ${({ theme }) => theme.color};
   }
 `;

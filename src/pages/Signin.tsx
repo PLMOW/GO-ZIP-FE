@@ -24,23 +24,20 @@ const Signin = () => {
         <Title>Sign in</Title>
         <Form onSubmit={handleSubmit(onValid)}>
           <ReactHookInput
-            type="Email"
+            type="이메일"
             register={register}
             errorMessage={errors.email?.message}
           />
-
           <ReactHookInput
-            type="Nickname"
+            type="닉네임"
             register={register}
             errorMessage={errors.nickname?.message}
           />
-
           <ReactHookInput
-            type="Password"
+            type="비밀번호"
             register={register}
             errorMessage={errors.password?.message}
           />
-
           <Submit>create</Submit>
         </Form>
         <SocialText>SignIn with Social</SocialText>
@@ -91,7 +88,6 @@ const Container = styled(motion.div)`
   box-shadow: 0px 0px 5px ${({ theme }) => theme.color};
   backdrop-filter: blur(3px);
   padding: 50px;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;

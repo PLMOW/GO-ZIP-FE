@@ -1,7 +1,13 @@
 import { UseFormRegister, FieldValues } from 'react-hook-form';
 
 /* Input Types */
-type InputTypes = 'Email' | 'Nickname' | 'Password';
+type InputTypes =
+  | 'Email'
+  | 'Nickname'
+  | 'Password'
+  | '이메일'
+  | '닉네임'
+  | '비밀번호';
 
 /* Input */
 export interface InputProps {
