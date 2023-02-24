@@ -3,14 +3,13 @@ import Label from 'components/form/Label';
 import { InputProps } from 'libs/client/types/formType';
 
 const EmailInput = ({ type, register, errorMessage }: InputProps) => {
-  console.log(type, errorMessage);
   return (
     <Wrapper>
       <Label value={type} errorMessage={errorMessage} />
       {type === 'Email' ? (
         <Input
           errorId={!!errorMessage}
-          {...register('signInEmail', {
+          {...register('email', {
             required: 'is required',
             validate: {
               hasAlpha: (value) => {
@@ -33,7 +32,7 @@ const EmailInput = ({ type, register, errorMessage }: InputProps) => {
       ) : type === 'Nickname' ? (
         <Input
           errorId={!!errorMessage}
-          {...register('signInNickname', {
+          {...register('nickname', {
             required: 'is required',
             minLength: {
               value: 4,
@@ -51,7 +50,7 @@ const EmailInput = ({ type, register, errorMessage }: InputProps) => {
       ) : (
         <Input
           errorId={!!errorMessage}
-          {...register('signInPassword', {
+          {...register('password', {
             required: 'is required',
             minLength: {
               value: 4,

@@ -12,9 +12,9 @@ export interface InputProps {
 
 /* SignIn */
 export interface FormState {
-  signInEmail: string;
-  signInPassword: string;
-  signInNickname: string;
+  email: string;
+  password: string;
+  nickname: string;
 }
 
 /* Label */

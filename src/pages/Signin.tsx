@@ -3,12 +3,8 @@ import styled from 'styled-components';
 import createUser from 'libs/client/api/createUser';
 import { motion } from 'framer-motion';
 import Label from 'components/form/Label';
-
-interface FormState {
-  signInEmail: string;
-  signInPassword: string;
-  signInNickname: string;
-}
+import { FormState } from 'libs/client/types/formType';
+import ReactHookInput from 'components/form/ReactHookInput';
 
 const Signin = () => {
   const {
@@ -33,69 +29,24 @@ const Signin = () => {
       <TopWrapper>
         <Title>Sign in</Title>
         <Form onSubmit={handleSubmit(onValid)}>
-          <Label value="Email" errorMessage={errors.signInEmail?.message} />
-          <Input
-            errorId={!!errors.signInEmail}
-            {...register('signInEmail', {
-              required: 'is required',
-              validate: {
-                hasAlpha: (value) => {
-                  const hasAlpha = !!value.match(/[a-zA-Z]/g);
-
-                  return hasAlpha ? true : 'must be include alpha';
-                },
-                isEmail: (value) => {
-                  const isEmail = !!value.match(
-                    /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
-                  );
-
-                  return isEmail ? true : 'Is not Email Form';
-                },
-              },
-            })}
-            type="text"
-            placeholder="Email"
+          <ReactHookInput
+            type="Email"
+            register={register}
+            errorMessage={errors.signInEmail?.message}
           />
 
-          <Label
-            value="Nickname"
+          <ReactHookInput
+            type="Nickname"
+            register={register}
             errorMessage={errors.signInNickname?.message}
           />
-          <Input
-            errorId={!!errors.signInNickname}
-            {...register('signInNickname', {
-              required: 'is required',
-              minLength: {
-                value: 4,
-                message: 'longer more than 4',
-              },
-              validate: (value) => {
-                const hasAlpha = !!value.match(/[a-zA-Z]/g);
 
-                return hasAlpha ? true : 'must be include alpha';
-              },
-            })}
-            type="text"
-            placeholder="NickName"
-          />
-
-          <Label
-            value="Password"
+          <ReactHookInput
+            type="Password"
+            register={register}
             errorMessage={errors.signInPassword?.message}
           />
 
-          <Input
-            errorId={!!errors.signInPassword}
-            {...register('signInPassword', {
-              required: 'is required',
-              minLength: {
-                value: 4,
-                message: 'longer more than 4',
-              },
-            })}
-            type="password"
-            placeholder="Password"
-          />
           <Submit>create</Submit>
         </Form>
         <SocialText>SignIn with Social</SocialText>
