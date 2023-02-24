@@ -10,7 +10,6 @@ interface navLinkProps {
 const NavLink = ({ href, value }: navLinkProps) => {
   const [isHover, setIsHover] = useState(false);
   const router = window.location.pathname;
-  console.log(router);
 
   return (
     <Wrapper
