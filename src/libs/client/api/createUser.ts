@@ -17,6 +17,7 @@ const createUser = async ({ email, password, nickname }: createUserProps) => {
       password,
       nickname,
     },
+    withCredentials: true,
   });
 };
 
