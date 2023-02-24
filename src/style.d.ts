@@ -4,6 +4,7 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     background: string;
     color: string;
+    pointColor: string;
     transitionOption: string;
   }
 }
