@@ -15,6 +15,7 @@ const loginUser = async ({ email, password }: LoginUserProps) => {
       email,
       password,
     },
+    withCredentials: true,
   });
 };
 
