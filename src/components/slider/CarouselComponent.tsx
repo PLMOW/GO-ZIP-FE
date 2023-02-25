@@ -1,6 +1,7 @@
 import gsap from 'gsap';
-import img1 from 'assets/img/i1.webp';
 import styled from 'styled-components';
+import Left from 'components/icons/Left';
+import Right from 'components/icons/Right';
 
 interface CarouselComponentProps {
   imgSrc: string;
@@ -9,6 +10,8 @@ interface CarouselComponentProps {
 const CarouselComponent = ({ imgSrc }: CarouselComponentProps) => {
   return (
     <Wrapper>
+      <Left />
+      <Right />
       <Image imgSrc={imgSrc} />
     </Wrapper>
   );
@@ -17,6 +20,7 @@ const CarouselComponent = ({ imgSrc }: CarouselComponentProps) => {
 export default CarouselComponent;
 
 const Wrapper = styled.div`
+  position: relative;
   height: 100vh;
   width: 100%;
 `;
