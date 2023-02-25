@@ -1,9 +1,12 @@
 # 기능 명세서
 
+### !HotFix
+
+- [ ] Image Component 캐싱 고려하기
+
 ### Home
 
 - [ ] mainTitleImg 컴포넌트 구현
-
   - [ ] 메인 Title 페이지 carousel(GSAP) 구현
     - [x] background Img Theme에 따른 이미지 overlay
     - [x] carousel에 들어가는 것, img가 아닌 컴포넌트로 구현(carouselComponent)
