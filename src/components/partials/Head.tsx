@@ -7,6 +7,7 @@ const Head = () => {
         http-equiv="Content-Security-Policy"
         content="upgrade-insecure-requests"
       ></meta>
+      <title>GO-ZIP</title>
     </Helmet>
   );
 };
