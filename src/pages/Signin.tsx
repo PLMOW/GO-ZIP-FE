@@ -5,8 +5,10 @@ import { motion } from 'framer-motion';
 import { FormState } from 'libs/client/types/formType';
 import ReactHookInput from 'components/form/ReactHookInput';
 import { useMutation } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 
 const Signin = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -14,8 +16,9 @@ const Signin = () => {
   } = useForm<FormState>();
 
   const { mutate, data, isLoading } = useMutation(signupPost, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       console.log('Query Fulfilled!');
+      navigate('/login');
     },
     onError: (err) => {
       console.log('Query Rejected');
