@@ -21,17 +21,9 @@ const NavLink = ({ href, value }: navLinkProps) => {
         <Btn>{value}</Btn>
       </Link>
       <AnimatePresence>
-        {!isHover && router.pathname === href ? (
+        {router.pathname === href ? (
           <Dot
-            layoutId={href}
-            variants={hoverVariants}
-            initial="from"
-            animate="to"
-            exit="exit"
-          />
-        ) : isHover ? (
-          <Dash
-            layoutId={href}
+            layoutId="dot"
             variants={hoverVariants}
             initial="from"
             animate="to"
@@ -59,9 +51,8 @@ const Btn = styled.div`
 
 const Dot = styled(motion.div)`
   position: absolute;
-  left: calc(50% - 10%);
-  bottom: 0px;
-  width: 20%;
+  bottom: 3px;
+  width: 100%;
   height: 3px;
   border-radius: 3px;
   background: ${({ theme }) => theme.pointColor};
@@ -69,7 +60,7 @@ const Dot = styled(motion.div)`
 
 const Dash = styled(motion.div)`
   position: absolute;
-  bottom: 0px;
+  bottom: 2px;
   width: 100%;
   height: 3px;
   border-radius: 3px;
