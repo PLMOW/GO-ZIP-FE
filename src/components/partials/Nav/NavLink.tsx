@@ -42,11 +42,14 @@ const Wrapper = styled.div`
 `;
 
 const Btn = styled.div`
-  color: ${({ theme }) => theme.color};
+  color: rgba(122, 122, 122, 1);
   font-weight: 600;
   transition: ease-in-out 0.1s;
   box-sizing: border-box;
   height: 30px;
+  :hover {
+    color: ${({ theme }) => theme.color};
+  }
 `;
 
 const Dot = styled(motion.div)`
