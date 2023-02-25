@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import loginUser from 'libs/client/api/loginUser';
+import loginPost from 'libs/client/api/loginPost';
 import { motion } from 'framer-motion';
 import { FormState } from 'libs/client/types/formType';
 import ReactHookInput from 'components/form/ReactHookInput';
@@ -14,7 +14,7 @@ const Login = () => {
 
   const onValid = async (data: FormState) => {
     const { email, password } = data;
-    const res = await loginUser({ email, password });
+    const res = await loginPost({ email, password });
 
     console.log(`res : ${res}`);
   };
