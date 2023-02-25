@@ -7,18 +7,17 @@ interface createUserProps {
 }
 
 const createUser = async ({ email, password, nickname }: createUserProps) => {
-  const route = `${process.env.REACT_APP_API_BASE_ROUTE}/api/signin`;
+  const route = `${process.env.REACT_APP_API_BASE_ROUTE}/api/signup`;
 
-  await axios({
-    method: 'post',
-    url: route,
-    data: {
+  await axios.post(
+    route,
+    {
       email,
       password,
       nickname,
     },
-    withCredentials: true,
-  });
+    { withCredentials: true }
+  );
 };
 
 export default createUser;
