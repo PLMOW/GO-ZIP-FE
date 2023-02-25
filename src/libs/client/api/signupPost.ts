@@ -14,8 +14,8 @@ const createUser = async ({ email, password, nickname }: createUserProps) => {
       email,
       password,
       nickname,
-    },
-    { withCredentials: AXIOS_CONFIG.CREDENTIAL_TRUE }
+    }
+    //{ withCredentials: AXIOS_CONFIG.CREDENTIAL_TRUE }
   );
 };
 
