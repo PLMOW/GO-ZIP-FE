@@ -24,17 +24,17 @@ const Signin = () => {
         <Title>Sign in</Title>
         <Form onSubmit={handleSubmit(onValid)}>
           <ReactHookInput
-            type="이메일"
+            type="Email"
             register={register}
             errorMessage={errors.email?.message}
           />
           <ReactHookInput
-            type="닉네임"
+            type="Nickname"
             register={register}
             errorMessage={errors.nickname?.message}
           />
           <ReactHookInput
-            type="비밀번호"
+            type="Password"
             register={register}
             errorMessage={errors.password?.message}
           />
