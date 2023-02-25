@@ -3,6 +3,7 @@ import Home from 'pages/Home';
 import Login from 'pages/Login';
 import Signin from 'pages/Signin';
 import Test from 'pages/Test';
+import Products from 'pages/Products';
 
 const Router = () => {
   return (
@@ -11,6 +12,7 @@ const Router = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signin" element={<Signin />} />
       <Route path="/test" element={<Test />} />
+      <Route path="/products" element={<Products />} />
     </Routes>
   );
 };
