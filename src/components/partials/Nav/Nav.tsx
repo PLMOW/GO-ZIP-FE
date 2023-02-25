@@ -85,5 +85,4 @@ const RightContainer = styled.div`
 const Svg = styled.svg`
   transition: ${({ theme }) => theme.transitionOption};
   color: ${({ theme }) => theme.color};
-  filter: drop-shadow(0px 0px 1px ${({ theme }) => theme.background});
 `;
