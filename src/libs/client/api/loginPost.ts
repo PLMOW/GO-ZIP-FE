@@ -14,7 +14,7 @@ const loginUser = async ({ email, password }: LoginUserProps) => {
       email,
       password,
     },
-    withCredentials: AXIOS_CONFIG.CREDENTIAL_TRUE,
+    //withCredentials: AXIOS_CONFIG.CREDENTIAL_TRUE,
   });
 };
 

@@ -3,7 +3,9 @@ import axios from 'axios';
 const Test = () => {
   const clickHandler = async () => {
     console.log('Send GET Method');
-    const res = await axios.get('http://13.125.193.128:8080/api/tryget');
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_BASE_ROUTE}/api/tryget`
+    );
     console.log('res : ', res);
   };
 
