@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from './axiosIstance';
 
 interface LoginUserProps {
   email: string;
@@ -6,11 +6,11 @@ interface LoginUserProps {
 }
 
 const loginUser = async ({ email, password }: LoginUserProps) => {
-  const route = `${process.env.REACT_APP_API_BASE_ROUTE}/api/login`;
+  const ENDPOINT = '/api/login';
 
-  await axios({
+  await api({
     method: 'post',
-    url: route,
+    url: ENDPOINT,
     data: {
       email,
       password,
