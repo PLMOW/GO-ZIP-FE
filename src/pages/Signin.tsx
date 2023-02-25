@@ -1,9 +1,10 @@
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import createUser from 'libs/client/api/createUser';
+import signupPost from 'libs/client/api/signupPost';
 import { motion } from 'framer-motion';
 import { FormState } from 'libs/client/types/formType';
 import ReactHookInput from 'components/form/ReactHookInput';
+import { useMutation } from 'react-query';
 
 const Signin = () => {
   const {
@@ -12,10 +13,18 @@ const Signin = () => {
     formState: { errors },
   } = useForm<FormState>();
 
+  const { mutate, data, isLoading } = useMutation(signupPost, {
+    onSuccess: (data) => {
+      console.log('Query Fulfilled!');
+    },
+    onError: (err) => {
+      console.log('Query Rejected');
+    },
+  });
+
   const onValid = async (data: FormState) => {
     const { email, nickname, password } = data;
-    const res = await createUser({ email, nickname, password });
-    console.log(`res : ${res}`);
+    mutate({ email, nickname, password });
   };
 
   return (
