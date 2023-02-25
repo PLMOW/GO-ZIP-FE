@@ -6,6 +6,8 @@ import { FormState } from 'libs/client/types/formType';
 import ReactHookInput from 'components/form/ReactHookInput';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import BackgroundImage from 'components/BackgroundImage';
+import imgSrc from 'assets/img/i3.webp';
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -31,34 +33,36 @@ const Signin = () => {
   };
 
   return (
-    <Container>
-      <TopWrapper>
-        <Title>Sign in</Title>
-        <Form onSubmit={handleSubmit(onValid)}>
-          <ReactHookInput
-            type="Email"
-            register={register}
-            errorMessage={errors.email?.message}
-          />
-          <ReactHookInput
-            type="Nickname"
-            register={register}
-            errorMessage={errors.nickname?.message}
-          />
-          <ReactHookInput
-            type="Password"
-            register={register}
-            errorMessage={errors.password?.message}
-          />
-          <Submit>create</Submit>
-        </Form>
-        <SocialText>SignIn with Social</SocialText>
-      </TopWrapper>
-      <BottomWrapper>
-        <SocialText>Or Sign Up Using</SocialText>
-        <a href="/login">login</a>
-      </BottomWrapper>
-    </Container>
+    <BackgroundImage src={imgSrc}>
+      <Container>
+        <TopWrapper>
+          <Title>Sign in</Title>
+          <Form onSubmit={handleSubmit(onValid)}>
+            <ReactHookInput
+              type="Email"
+              register={register}
+              errorMessage={errors.email?.message}
+            />
+            <ReactHookInput
+              type="Nickname"
+              register={register}
+              errorMessage={errors.nickname?.message}
+            />
+            <ReactHookInput
+              type="Password"
+              register={register}
+              errorMessage={errors.password?.message}
+            />
+            <Submit>create</Submit>
+          </Form>
+          <SocialText>SignIn with Social</SocialText>
+        </TopWrapper>
+        <BottomWrapper>
+          <SocialText>Or Sign Up Using</SocialText>
+          <a href="/login">login</a>
+        </BottomWrapper>
+      </Container>
+    </BackgroundImage>
   );
 };
 
@@ -97,8 +101,9 @@ const Container = styled(motion.div)`
   left: calc(50% - 250px);
   top: calc(50% - 400px);
   color: ${({ theme }) => theme.color};
-  box-shadow: 0px 0px 5px ${({ theme }) => theme.color};
+  box-shadow: 0px 0px 5px ${({ theme }) => theme.transparentColor};
   backdrop-filter: blur(3px);
+  background: ${({ theme }) => theme.transparentBackground};
   padding: 50px;
   display: flex;
   flex-direction: column;

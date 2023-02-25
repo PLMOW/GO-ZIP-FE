@@ -6,6 +6,8 @@ import { FormState } from 'libs/client/types/formType';
 import ReactHookInput from 'components/form/ReactHookInput';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import BackgroundImage from 'components/BackgroundImage';
+import imgSrc from 'assets/img/i4.webp';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,28 +33,30 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <TopWrapper>
-        <Title>Log in</Title>
-        <Form onSubmit={handleSubmit(onValid)}>
-          <ReactHookInput
-            type="Email"
-            register={register}
-            errorMessage={errors.email?.message}
-          />
-          <ReactHookInput
-            type="Password"
-            register={register}
-            errorMessage={errors.password?.message}
-          />
-          <Submit>Login</Submit>
-        </Form>
-      </TopWrapper>
-      <BottomWrapper>
-        <SocialText>LogIn with Social</SocialText>
-        <a href="/login">login</a>
-      </BottomWrapper>
-    </Container>
+    <BackgroundImage src={imgSrc}>
+      <Container>
+        <TopWrapper>
+          <Title>Log in</Title>
+          <Form onSubmit={handleSubmit(onValid)}>
+            <ReactHookInput
+              type="Email"
+              register={register}
+              errorMessage={errors.email?.message}
+            />
+            <ReactHookInput
+              type="Password"
+              register={register}
+              errorMessage={errors.password?.message}
+            />
+            <Submit>Login</Submit>
+          </Form>
+        </TopWrapper>
+        <BottomWrapper>
+          <SocialText>LogIn with Social</SocialText>
+          <a href="/login">login</a>
+        </BottomWrapper>
+      </Container>
+    </BackgroundImage>
   );
 };
 
@@ -91,14 +95,15 @@ const Container = styled(motion.div)`
   left: calc(50% - 250px);
   top: calc(50% - 400px);
   color: ${({ theme }) => theme.color};
-  box-shadow: 0px 0px 5px ${({ theme }) => theme.color};
+  box-shadow: 0px 0px 5px ${({ theme }) => theme.transparentColor};
   backdrop-filter: blur(3px);
+  background: ${({ theme }) => theme.transparentBackground};
   padding: 50px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  transition: ease-in-out 0.15s;
+  transition: ${({ theme }) => theme.transitionOption};
 `;
 
 const Title = styled.div`
