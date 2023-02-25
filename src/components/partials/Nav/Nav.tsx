@@ -45,6 +45,7 @@ export default Nav;
 
 const Wrapper = styled.div`
   position: fixed;
+  z-index: 1;
   padding: 15px;
   top: 0px;
   display: flex;
