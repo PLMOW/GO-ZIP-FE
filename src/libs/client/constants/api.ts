@@ -1,3 +1,5 @@
+/* APIS */
+
 export const END_POINT = Object.freeze({
   LOG_IN: '/api/login' as const,
   SIGN_UP: '/api/signup' as const,
@@ -16,7 +18,11 @@ export const METHOD = Object.freeze<Method>({
   DELETE: 'delete' as const,
 });
 
+/* AXIOS INSTANCE */
+
 export const AXIOS_CONFIG = Object.freeze({
+  ACCESS_ALLOW_ORIGIN: 'Access-Control-Allow-Origin' as const,
+  ALLOW_ALL: '*' as const,
   CREDENTIAL_TRUE: true as const,
   CREDENTIAL_FALSE: false as const,
 });
