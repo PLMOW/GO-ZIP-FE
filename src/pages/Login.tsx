@@ -4,19 +4,30 @@ import loginPost from 'libs/client/api/loginPost';
 import { motion } from 'framer-motion';
 import { FormState } from 'libs/client/types/formType';
 import ReactHookInput from 'components/form/ReactHookInput';
+import { useMutation } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormState>();
 
+  const { mutate, data, isLoading } = useMutation(loginPost, {
+    onSuccess: () => {
+      console.log('Login Query Fulfilled!');
+      navigate('/');
+    },
+    onError: (err) => {
+      console.log('Login Query Rejected');
+    },
+  });
+
   const onValid = async (data: FormState) => {
     const { email, password } = data;
-    const res = await loginPost({ email, password });
-
-    console.log(`res : ${res}`);
+    mutate({ email, password });
   };
 
   return (
