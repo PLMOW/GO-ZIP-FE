@@ -26,8 +26,8 @@ const Image = styled.div<{ imgSrc: string }>`
   width: 100%;
   object-fit: cover;
   background-image: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0),
+      210deg,
+      rgba(222, 222, 222, 0.2),
       rgba(0, 0, 0, 0.8)
     ),
     url(${({ imgSrc }) => imgSrc});
