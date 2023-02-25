@@ -1,12 +1,8 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 const Head = () => {
   return (
     <Helmet>
-      <meta
-        http-equiv="Content-Security-Policy"
-        content="upgrade-insecure-requests"
-      ></meta>
       <title>GO-ZIP</title>
     </Helmet>
   );

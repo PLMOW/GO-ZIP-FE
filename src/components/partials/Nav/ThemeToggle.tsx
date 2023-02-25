@@ -12,11 +12,12 @@ const ToggleBtn = () => {
 };
 
 const Color = styled.div`
-  height: 30px;
+  height: 20px;
   width: 30px;
   border-radius: 5px;
   background: ${({ theme }) => theme.color};
   transition: 0.15s ease-in-out;
+
   :hover {
     cursor: pointer;
   }

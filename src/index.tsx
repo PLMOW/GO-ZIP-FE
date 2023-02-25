@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import store from 'redux/store';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import Head from 'components/partials/Head';
+import { HelmetProvider } from 'react-helmet-async';
 
 const queryClient = new QueryClient();
 
@@ -14,11 +15,13 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <Provider store={store}>
-        <Head />
-        <App />
-      </Provider>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <Head />
+          <App />
+        </Provider>
+      </QueryClientProvider>
+    </HelmetProvider>
   </React.StrictMode>
 );
