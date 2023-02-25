@@ -1,4 +1,5 @@
-import axios from 'axios';
+import api from './axiosIstance';
+import { END_POINT, AXIOS_CONFIG } from 'libs/client/constants/api';
 
 interface createUserProps {
   email: string;
@@ -7,16 +8,14 @@ interface createUserProps {
 }
 
 const createUser = async ({ email, password, nickname }: createUserProps) => {
-  const route = `${process.env.REACT_APP_API_BASE_ROUTE}/api/signup`;
-
-  await axios.post(
-    route,
+  await api.post(
+    END_POINT.SIGN_UP,
     {
       email,
       password,
       nickname,
     },
-    { withCredentials: true }
+    { withCredentials: AXIOS_CONFIG.CREDENTIAL_TRUE }
   );
 };
 
