@@ -88,6 +88,7 @@ const Input = styled.input<{ errorId: boolean }>`
   background: transparent;
   :focus {
     outline: none;
-    border-bottom: solid 2px ${({ theme }) => theme.color};
+    border-bottom: solid 2px
+      ${(props) => (props.errorId ? props.theme.pointColor : props.theme.color)};
   }
 `;
