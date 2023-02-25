@@ -7,7 +7,7 @@ import ReactHookInput from 'components/form/ReactHookInput';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import BackgroundImage from 'components/BackgroundImage';
-import backgroundImage from 'assets/img/i4.webp';
+import imgSrc from 'assets/img/i4.webp';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const Login = () => {
   };
 
   return (
-    <BackgroundImage src={backgroundImage}>
+    <BackgroundImage src={imgSrc}>
       <Container>
         <TopWrapper>
           <Title>Log in</Title>
@@ -103,7 +103,7 @@ const Container = styled(motion.div)`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  transition: ease-in-out 0.15s;
+  transition: ${({ theme }) => theme.transitionOption};
 `;
 
 const Title = styled.div`
