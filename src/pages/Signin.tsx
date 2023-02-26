@@ -109,7 +109,7 @@ const Container = styled(motion.div)`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  transition: ease-in-out 0.15s;
+  transition: ${({ theme }) => theme.transitionOption};
 `;
 
 const Title = styled.div`
