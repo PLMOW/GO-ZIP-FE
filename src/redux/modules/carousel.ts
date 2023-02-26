@@ -13,14 +13,13 @@ const carouselSlicer = createSlice({
   reducers: {
     next: (state) => {
       state.index = (state.index + 1) % state.imgs.length;
-
-      return state;
     },
 
     prev: (state) => {
-      state.index = (state.index - 1) % state.imgs.length;
-
-      return state;
+      const isFirstImg = !state.index;
+      isFirstImg
+        ? (state.index = state.imgs.length - 1)
+        : (state.index = state.index - 1);
     },
   },
 });
