@@ -1,7 +1,5 @@
-import gsap from 'gsap';
 import styled from 'styled-components';
-import Left from 'components/icons/Left';
-import Right from 'components/icons/Right';
+import { motion } from 'framer-motion';
 
 interface CarouselComponentProps {
   imgSrc: string;
@@ -9,9 +7,13 @@ interface CarouselComponentProps {
 
 const CarouselComponent = ({ imgSrc }: CarouselComponentProps) => {
   return (
-    <Wrapper>
-      <Left />
-      <Right />
+    <Wrapper
+      variants={carouselVariants}
+      initial="from"
+      animate="to"
+      exit="exit"
+      layoutId="ca"
+    >
       <Image imgSrc={imgSrc} />
     </Wrapper>
   );
@@ -19,13 +21,20 @@ const CarouselComponent = ({ imgSrc }: CarouselComponentProps) => {
 
 export default CarouselComponent;
 
-const Wrapper = styled.div`
-  position: relative;
+const carouselVariants = {
+  from: { opacity: 0, transition: { duration: 1 } },
+  to: { opacity: 1, transition: { duration: 1 } },
+  exit: { opacity: 0, transition: { duration: 1 } },
+};
+
+const Wrapper = styled(motion.div)`
+  position: absolute;
   height: 100vh;
   width: 100%;
 `;
 
 const Image = styled.div<{ imgSrc: string }>`
+  position: absolute;
   height: 100vh;
   width: 100%;
   object-fit: cover;
