@@ -15,7 +15,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setInterval(() => dispatch(next()), 5000);
+    setInterval(() => dispatch(next()), 7000);
   }, []);
 
   return (
