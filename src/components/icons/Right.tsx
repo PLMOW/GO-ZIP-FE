@@ -1,8 +1,14 @@
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { next } from 'redux/modules/carousel';
 
 const Right = () => {
+  const dispatch = useDispatch();
+  const nextHandler = () => dispatch(next());
+
   return (
     <Svg
+      onClick={nextHandler}
       width="50"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -24,6 +30,7 @@ export default Right;
 
 const Svg = styled.svg`
   position: absolute;
+  z-index: 1;
   right: 0px;
   top: calc(25% - 10px);
   height: 50%;
