@@ -1,11 +1,18 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import CarouselText from './CarouselText';
+
+export type textDataType = {
+  mainTitle: string;
+  subTitle: string;
+};
 
 interface CarouselComponentProps {
   imgSrc: string;
+  textData: textDataType;
 }
 
-const CarouselComponent = ({ imgSrc }: CarouselComponentProps) => {
+const CarouselComponent = ({ imgSrc, textData }: CarouselComponentProps) => {
   return (
     <Wrapper
       variants={carouselVariants}
@@ -15,6 +22,7 @@ const CarouselComponent = ({ imgSrc }: CarouselComponentProps) => {
       layoutId="ca"
     >
       <Image imgSrc={imgSrc} />
+      <CarouselText textData={textData} />
     </Wrapper>
   );
 };
