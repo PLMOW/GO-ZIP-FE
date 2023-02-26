@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { AXIOS_CONFIG } from 'libs/client/constants/api';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_ROUTE,
