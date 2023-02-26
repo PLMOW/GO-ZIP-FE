@@ -29,6 +29,7 @@ const Login = () => {
 
   const onValid = async (data: FormState) => {
     const { email, password } = data;
+    console.log('EP :', `${process.env.REACT_APP_API_BASE_ROUTE}/api/login`);
     mutate({ email, password });
   };
 
