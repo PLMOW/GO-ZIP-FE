@@ -8,7 +8,12 @@ const carouselSlicer = createSlice({
   name: 'carouselSlicer',
   initialState: {
     index: 0,
-    imgs: [img1, img2, img3, img4],
+    imgs: [
+      { src: img1, mainTitle: 'mainTitle1', subTitle: 'SubTitle1' },
+      { src: img2, mainTitle: 'mainTitle2', subTitle: 'SubTitle2' },
+      { src: img3, mainTitle: 'mainTitle3', subTitle: 'SubTitle3' },
+      { src: img4, mainTitle: 'mainTitle4', subTitle: 'SubTitle4' },
+    ],
   },
   reducers: {
     next: (state) => {
