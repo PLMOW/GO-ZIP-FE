@@ -2,7 +2,10 @@
 
 ### !HotFix
 
-- [ ] Image Component 캐싱 고려하기
+- [ ] Image Component 시간 지나야 뜸.
+  - 캐싱?
+  - public?
+    해결책 찾아보기
 
 ### Home
 
