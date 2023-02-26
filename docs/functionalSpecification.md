@@ -2,10 +2,12 @@
 
 ### !HotFix
 
-- [ ] Image Component 시간 지나야 뜸.
-  - 캐싱?
-  - public?
-    해결책 찾아보기
+- [x] Image Component 시간 지나야 뜸.
+  - [x] new Image를 이용해 JS 동적 CSR preLoading
+    - [x] PromiseAll을 이용한 preLoad
+    - [x] forEach를 이용한 preLoad => 채택
+  - [x] public를 이용한 CSS content preLoading
+    - [x] 각 솔루션 효율성 비교 및 실험
 
 ### Home
 
