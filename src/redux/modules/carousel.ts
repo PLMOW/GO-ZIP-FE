@@ -13,14 +13,12 @@ const carouselSlicer = createSlice({
   reducers: {
     next: (state) => {
       state.index = (state.index + 1) % state.imgs.length;
-      console.log(state.index, state.imgs);
 
       return state;
     },
 
-    prev: (state, action) => {
+    prev: (state) => {
       state.index = (state.index - 1) % state.imgs.length;
-      console.log(state.index, state.imgs);
 
       return state;
     },
@@ -28,4 +26,4 @@ const carouselSlicer = createSlice({
 });
 
 export default carouselSlicer.reducer;
-export const { next } = carouselSlicer.actions;
+export const { next, prev } = carouselSlicer.actions;
