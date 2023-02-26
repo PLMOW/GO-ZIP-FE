@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Test = () => {
   const clickHandler = async () => {
-    console.log('Send GET Method');
     console.log('EP :', `${process.env.REACT_APP_API_BASE_ROUTE}/api/tryget`);
     const res = await axios.get(
       `${process.env.REACT_APP_API_BASE_ROUTE}/api/tryget`
