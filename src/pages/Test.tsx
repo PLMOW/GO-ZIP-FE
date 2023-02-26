@@ -1,4 +1,5 @@
 import axios from 'axios';
+import styled from 'styled-components';
 
 const Test = () => {
   const clickHandler = async () => {
@@ -10,10 +11,15 @@ const Test = () => {
   };
 
   return (
-    <>
+    <Wrapper>
       <button onClick={clickHandler}>GET</button>
-    </>
+    </Wrapper>
   );
 };
 
 export default Test;
+
+const Wrapper = styled.div`
+  margin-top: 230px;
+  padding: 10px;
+`;
