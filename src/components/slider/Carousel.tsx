@@ -8,17 +8,22 @@ import { AnimatePresence } from 'framer-motion';
 
 const Carousel = () => {
   const { index, imgs } = useSelector((state: RootState) => state.carousel);
-
   return (
     <Wrapper>
       <Left />
       <Right />
       <AnimatePresence>
-        {imgs.map((v, i) =>
-          i === index ? (
-            <CarouselComponent key={`${v}=index`} imgSrc={v} />
-          ) : null
-        )}
+        {imgs.map((v, i) => {
+          const { src, ...textData } = v;
+
+          return i === index ? (
+            <CarouselComponent
+              key={`${src}=index`}
+              imgSrc={src}
+              textData={textData}
+            />
+          ) : null;
+        })}
       </AnimatePresence>
     </Wrapper>
   );
