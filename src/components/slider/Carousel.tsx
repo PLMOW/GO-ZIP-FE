@@ -37,8 +37,7 @@ const Carousel = () => {
 
 export default Carousel;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div.attrs({ id: 'carousel' })`
   position: relative;
-  width: auto;
   height: 100vh;
 `;
