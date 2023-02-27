@@ -1,5 +1,5 @@
 import api from './axiosIstance';
-import { END_POINT, METHOD, AXIOS_CONFIG } from 'libs/client/constants/api';
+import { END_POINT, METHOD } from 'libs/client/constants/api';
 
 interface LoginUserProps {
   email: string;
@@ -7,7 +7,7 @@ interface LoginUserProps {
 }
 
 const loginUser = async ({ email, password }: LoginUserProps) => {
-  await api({
+  const res = await api({
     method: METHOD.POST,
     url: END_POINT.LOG_IN,
     data: {
@@ -16,6 +16,8 @@ const loginUser = async ({ email, password }: LoginUserProps) => {
     },
     //withCredentials: AXIOS_CONFIG.CREDENTIAL_TRUE,
   });
+
+  return res;
 };
 
 export default loginUser;

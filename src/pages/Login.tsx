@@ -8,8 +8,10 @@ import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import BackgroundImage from 'components/BackgroundImage';
 import imgSrc from 'assets/img/i4.webp';
+import { useCookies } from 'react-cookie';
 
 const Login = () => {
+  const [cookies, setCookie] = useCookies();
   const navigate = useNavigate();
   const {
     register,
@@ -18,9 +20,12 @@ const Login = () => {
   } = useForm<FormState>();
 
   const { mutate, data, isLoading } = useMutation(loginPost, {
-    onSuccess: () => {
+    onSuccess: (res) => {
+      const myToken = res.headers['authorization'];
+      setCookie('ACCESS_TOKEN', myToken);
       console.log('Login Query Fulfilled!');
-      navigate('/');
+
+      return navigate('/');
     },
     onError: (err) => {
       console.log('Login Query Rejected');

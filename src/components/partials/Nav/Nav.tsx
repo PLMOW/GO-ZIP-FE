@@ -86,5 +86,5 @@ const RightContainer = styled.div`
 
 const Svg = styled.svg`
   transition: ${({ theme }) => theme.transitionOption};
-  color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.color};
 `;

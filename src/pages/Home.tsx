@@ -2,6 +2,7 @@ import Carousel from 'components/slider/Carousel';
 import styled from 'styled-components';
 import Search from './Search';
 import FloatNav from 'components/partials/FloatNav/FloatNav';
+import { HASH_ROUTE } from 'libs/client/constants/hashRoute';
 
 const Home = () => {
   return (
@@ -9,10 +10,12 @@ const Home = () => {
       <FloatNav />
       <Wrapper>
         <Carousel />
-        <Content1>1</Content1>
-        <Content2>2</Content2>
-        <Content3>3</Content3>
-        <Content4>4</Content4>
+        {HASH_ROUTE.map((v, i) => {
+          const id = v.hash.replaceAll('#', '');
+          if (!id.includes('content')) return;
+
+          return <Content key={`${id}_Content`} isEven={!!(i % 2)} id={id} />;
+        })}
         <Search />
       </Wrapper>
     </>
@@ -26,22 +29,15 @@ const Wrapper = styled.div`
   overflow: hidden;
 `;
 
-const Content1 = styled.div.attrs({ id: 'content_1' })`
+const Content = styled.div<{ isEven: boolean }>`
+  border-bottom: 2px black solid;
   height: 100vh;
-  background: tomato;
-`;
+  background: ${(props) => {
+    const {
+      isEven,
+      theme: { transparentColor, transparentBackground },
+    } = props;
 
-const Content2 = styled.div.attrs({ id: 'content_2' })`
-  height: 100vh;
-  background: rgba(113, 32, 12);
-`;
-
-const Content3 = styled.div.attrs({ id: 'content_3' })`
-  height: 100vh;
-  background: rgb(58, 25, 202);
-`;
-
-const Content4 = styled.div.attrs({ id: 'content_4' })`
-  height: 100vh;
-  background: wheat;
+    return isEven ? transparentColor : transparentBackground;
+  }};
 `;
