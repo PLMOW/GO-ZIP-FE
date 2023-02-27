@@ -28,6 +28,8 @@ const Signin = () => {
   });
 
   const onValid = async (data: FormState) => {
+    console.log('EP :', `${process.env.REACT_APP_API_BASE_ROUTE}/api/signup`);
+
     const { email, nickname, password } = data;
     mutate({ email, nickname, password });
   };
@@ -109,7 +111,7 @@ const Container = styled(motion.div)`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  transition: ease-in-out 0.15s;
+  transition: ${({ theme }) => theme.transitionOption};
 `;
 
 const Title = styled.div`

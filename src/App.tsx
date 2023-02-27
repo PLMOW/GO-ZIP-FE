@@ -6,9 +6,17 @@ import { RootState } from 'redux/store';
 import GlobalStyle from 'libs/client/style/GlobalStyle';
 import Router from './Router';
 import Nav from 'components/partials/Nav/Nav';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { next } from 'redux/modules/carousel';
 
 function App() {
   const isDark = useSelector<RootState>((state) => state.themeToggle);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setInterval(() => dispatch(next()), 7000);
+  }, []);
 
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
