@@ -9,7 +9,7 @@ const Right = () => {
   return (
     <Svg
       onClick={nextHandler}
-      width="50"
+      width="80"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -29,14 +29,11 @@ const Right = () => {
 export default Right;
 
 const Svg = styled.svg`
-  position: absolute;
-  z-index: 1;
-  right: 0px;
-  top: calc(25% - 10px);
-  height: 50%;
-  padding: 20px;
-
+  color: rgba(222, 222, 222);
+  opacity: 0.65;
+  transition: ${({ theme }) => theme.transitionOption};
   :hover {
     cursor: pointer;
+    opacity: 1;
   }
 `;

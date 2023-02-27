@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import CarouselComponent from './CarouselComponent';
-import Left from 'components/icons/Left';
-import Right from 'components/icons/Right';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { AnimatePresence } from 'framer-motion';
@@ -20,8 +18,6 @@ const Carousel = () => {
 
   return (
     <Wrapper>
-      <Left />
-      <Right />
       <AnimatePresence>
         {imgs.map((v, i) => {
           const { src, ...textData } = v;
