@@ -27,8 +27,18 @@ const GlobalStyle = createGlobalStyle`
       background-color: ${({ theme }) => theme.background};
   }
 
+  /* Scroll Motion */
   * {
     scroll-behavior: smooth;
+  }
+
+  /* Prevent Drag */
+  * {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
   }
 
   
