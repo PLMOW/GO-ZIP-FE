@@ -35,16 +35,16 @@ const Wrapper = styled.div`
   left: 5%;
   margin-left: 95px;
   font-weight: 600;
-  transition: ${({ theme }) => theme.transitionOption};
   background: ${({ theme }) => theme.transparentBackground};
   color: ${({ theme }) => theme.color};
   border-radius: 3px;
+  opacity: 0.9;
 `;
 
 const Trigger = styled.a<{ focus: boolean }>`
-  transition: ${({ theme }) => theme.transitionOption};
   color: ${(props) => (props.focus ? props.theme.background : null)};
   background: ${(props) => (props.focus ? props.theme.color : null)};
   border-radius: 3px;
   padding: 10px;
+  transition: ${({ theme }) => theme.transitionOption};
 `;
