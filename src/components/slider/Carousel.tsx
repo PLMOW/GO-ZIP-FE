@@ -8,14 +8,6 @@ import { useEffect } from 'react';
 const Carousel = () => {
   const { index, imgs } = useSelector((state: RootState) => state.carousel);
 
-  useEffect(() => {
-    console.log('Preload');
-    imgs.forEach((v) => {
-      const myImage = new Image();
-      myImage.src = v.src;
-    });
-  }, []);
-
   return (
     <Wrapper>
       <AnimatePresence>
