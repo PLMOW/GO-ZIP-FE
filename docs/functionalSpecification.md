@@ -19,20 +19,23 @@
       - [x] Carousel 컴포넌트 Text 컴포넌트 추가
       - [x] GSAP을 이용한 캐러셀 로직 구현
       - [x] setTimeOut infinity Animation 구현
-- [ ] linkNav 추가
-  - [ ] 기능 추가 후 overflow-y: hidden;
+- [x] linkNav 추가
+  - [x] 기능 추가 후 overflow-y: hidden;
 - [ ] Product 검색 페이지 생성
 
 ### Nav
 
 - [x] Nav Router에 따른 border 이동
 - [x] Scroll에 따른 Nav 색상(Transparent => color / background) 변경
-- [ ] themeToggle 컴포넌트 위치 변경 고려하기
+- [x] themeToggle 컴포넌트 위치 변경 고려하기
 - [x] nav 이동 간, unmount되는 Animate 핸들링 (Background.tsx motion 추가)
 
 ### Refactor
 
 - 상시 소프트 코드로 변경
+- [ ] Home에 Scroll Interative 작성되어있는 코드들 redux로 변수 선언 후, 관리. (추후 DB에서 관리하면 받아서 렌더링 가능토록)
+  - [ ] 소프트 코드화
+  - [ ] 함수 분리. 가능하면 다른 컴포넌트에서 재사용이 가능토록 customHook화
 
 ---
 
