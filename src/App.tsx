@@ -16,9 +16,10 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    /* Carousel Infinity Animate */
     setInterval(() => dispatch(next()), 7000);
 
-    console.log('Preload');
+    /* Image preLoad */
     imgs.forEach((v) => {
       const myImage = new Image();
       myImage.src = v.src;
