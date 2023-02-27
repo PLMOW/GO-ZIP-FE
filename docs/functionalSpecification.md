@@ -11,7 +11,7 @@
 
 ### Home
 
-- [ ] mainTitleImg 컴포넌트 구현
+- [x] mainTitleImg 컴포넌트 구현
   - [x] 메인 Title 페이지 carousel(GSAP) 구현
     - [x] background Img Theme에 따른 이미지 overlay
     - [x] carousel에 들어가는 것, img가 아닌 컴포넌트로 구현(carouselComponent)
@@ -19,7 +19,7 @@
       - [x] Carousel 컴포넌트 Text 컴포넌트 추가
       - [x] GSAP을 이용한 캐러셀 로직 구현
       - [x] setTimeOut infinity Animation 구현
-  - [ ] Product 추가 페이지 생성
+  - [ ] Product 검색 페이지 생성
 
 ### Nav
 
