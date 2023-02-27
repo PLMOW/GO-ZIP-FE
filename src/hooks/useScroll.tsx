@@ -1,16 +1,11 @@
 import { useRef } from 'react';
 
-const useScroll = () => {
-  const scrollRef = useRef<HTMLElement>(null);
+function useMoveScrool() {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const move = () => {
-    if (!scrollRef.current) return;
-    scrollRef.current?.scrollIntoView({
-      block: 'center',
-      behavior: 'smooth',
-    });
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
+  return { scrollRef, move };
+}
 
-  return [scrollRef, move];
-};
-
-export default useScroll;
+export default useMoveScrool;
