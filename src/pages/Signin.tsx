@@ -28,8 +28,6 @@ const Signin = () => {
   });
 
   const onValid = async (data: FormState) => {
-    console.log('EP :', `${process.env.REACT_APP_API_BASE_ROUTE}/api/signup`);
-
     const { email, nickname, password } = data;
     mutate({ email, nickname, password });
   };
