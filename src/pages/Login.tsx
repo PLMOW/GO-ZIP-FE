@@ -33,7 +33,8 @@ const Login = () => {
   };
 
   return (
-    <BackgroundImage src={imgSrc}>
+    <>
+      <BackgroundImage src={imgSrc} />
       <Container>
         <TopWrapper>
           <Title>Log in</Title>
@@ -56,7 +57,7 @@ const Login = () => {
           <a href="/login">login</a>
         </BottomWrapper>
       </Container>
-    </BackgroundImage>
+    </>
   );
 };
 
