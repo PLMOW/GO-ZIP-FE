@@ -9,6 +9,14 @@
   - [x] public를 이용한 CSS content preLoading
     - [x] 각 솔루션 효율성 비교 및 실험
 
+### ToDo
+
+- [ ] 요청할때 헤더에 토큰 넣기 / 토큰 받아서 쿠키 저장
+- [ ] 시/군/구 데이터 노가다 & Constant 선언
+- [ ] 등록 페이지 구현
+- [ ] 검색 페이지 구현
+  - [ ] 검색 창에서 query 담아서 보내주기(API 명세서)
+
 ### Home
 
 - [x] mainTitleImg 컴포넌트 구현
@@ -33,9 +41,11 @@
 ### Refactor
 
 - 상시 소프트 코드로 변경
-- [ ] Home에 Scroll Interative 작성되어있는 코드들 redux로 변수 선언 후, 관리. (추후 DB에서 관리하면 받아서 렌더링 가능토록)
-  - [ ] 소프트 코드화
-  - [ ] 함수 분리. 가능하면 다른 컴포넌트에서 재사용이 가능토록 customHook화
+
+- [x] Nav 리팩터링
+  - [x] Home에 Scroll Interative 작성되어있는 코드들 redux로 변수 선언 후, 관리. (추후 DB에서 관리하면 받아서 렌더링 가능토록)
+    - [x] 소프트 코드화
+    - [x] 함수 분리. 가능하면 다른 컴포넌트에서 재사용이 가능토록 customHook화
 
 ---
 
