@@ -27,6 +27,9 @@ const GlobalStyle = createGlobalStyle`
       background-color: ${({ theme }) => theme.background};
   }
 
+  * {
+    scroll-behavior: smooth;
+  }
 
   
   html, body, div, span, applet, object, iframe,
