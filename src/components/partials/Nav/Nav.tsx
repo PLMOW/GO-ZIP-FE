@@ -36,6 +36,7 @@ const Nav = () => {
         <NavLink value={'Home'} href={'/'} />
         <NavLink value={'LogIn'} href={'/login'} />
         <NavLink value={'SignIn'} href={'/signin'} />
+        <NavLink value={'상품등록'} href={'/product/load'} />
       </RightContainer>
     </Wrapper>
   );
