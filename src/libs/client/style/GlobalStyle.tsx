@@ -6,6 +6,31 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.color};
     transition: ${({ theme }) => theme.transitionOption}
   }
+
+    
+  /* Scroll webkit CSS */
+  *::-webkit-scrollbar {
+      width: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+      background-color: ${({ theme }) => theme.color};
+      border-radius: 3px ;
+      transition: 0.2s ease-in-out;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  *::-webkit-scrollbar-track {
+      background-color: ${({ theme }) => theme.background};
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
+
   
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,

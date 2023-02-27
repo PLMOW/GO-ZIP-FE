@@ -30,9 +30,9 @@ const CarouselComponent = ({ imgSrc, textData }: CarouselComponentProps) => {
 export default CarouselComponent;
 
 const carouselVariants = {
-  from: { opacity: 0, transition: { duration: 1 } },
-  to: { opacity: 1, transition: { duration: 1 } },
-  exit: { opacity: 0, transition: { duration: 1 } },
+  from: { opacity: 0, transition: { duration: 0.15 } },
+  to: { opacity: 1, transition: { duration: 0.15 } },
+  exit: { opacity: 0, transition: { duration: 0.15 } },
 };
 
 const Wrapper = styled(motion.div)`

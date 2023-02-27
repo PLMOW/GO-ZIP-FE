@@ -1,18 +1,26 @@
 import styled from 'styled-components';
 import { ReactNode } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface BackgroundImageProps {
   src: string;
-  children: ReactNode;
 }
 
-const BackgroundImage = ({ src, children }: BackgroundImageProps) => {
-  return <Wrapper src={src}>{children}</Wrapper>;
+const BackgroundImage = ({ src }: BackgroundImageProps) => {
+  return (
+    <Wrapper
+      variants={backgroundVariants}
+      src={src}
+      initial="from"
+      animate="to"
+      exit="exit"
+    ></Wrapper>
+  );
 };
 
 export default BackgroundImage;
 
-const Wrapper = styled.div<{ src: string }>`
+const Wrapper = styled(motion.div)<{ src: string }>`
   height: 100vh;
   width: 100%;
   object-fit: cover;
@@ -24,3 +32,9 @@ const Wrapper = styled.div<{ src: string }>`
     ),
     url(${({ src }) => src});
 `;
+
+const backgroundVariants = {
+  from: { opacity: 0.8, transition: { duration: 0.15 } },
+  to: { opacity: 1, transition: { duration: 0.15 } },
+  exit: { opacity: 0.8, transition: { duration: 0.15 } },
+};
