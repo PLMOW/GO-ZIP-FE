@@ -14,7 +14,7 @@ const Home = () => {
           const id = v.hash.replaceAll('#', '');
           if (!id.includes('content')) return;
 
-          return <Content key={`${id}_Content`} isOdd={!!(i % 2)} id={id} />;
+          return <Content key={`${id}_Content`} isEven={!!(i % 2)} id={id} />;
         })}
         <Search />
       </Wrapper>
@@ -29,15 +29,15 @@ const Wrapper = styled.div`
   overflow: hidden;
 `;
 
-const Content = styled.div<{ isOdd: boolean }>`
+const Content = styled.div<{ isEven: boolean }>`
   border-bottom: 2px black solid;
   height: 100vh;
   background: ${(props) => {
     const {
-      isOdd,
+      isEven,
       theme: { transparentColor, transparentBackground },
     } = props;
 
-    return isOdd ? transparentColor : transparentBackground;
+    return isEven ? transparentColor : transparentBackground;
   }};
 `;
