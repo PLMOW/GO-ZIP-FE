@@ -1,14 +1,25 @@
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
+import { HASH_ROUTE } from 'libs/client/constants/hashRoute';
 
 const FloatNav = () => {
+  const { hash: currHash } = useLocation();
+
   return (
     <Wrapper>
-      <Trigger href="#carousel">Home</Trigger>
-      <Trigger href="#content_1">content1</Trigger>
-      <Trigger href="#content_2">content2</Trigger>
-      <Trigger href="#content_3">content3</Trigger>
-      <Trigger href="#content_4">content4</Trigger>
-      <Trigger href="#search">search</Trigger>
+      {HASH_ROUTE.map((data) => {
+        const { hash, title } = data;
+
+        return (
+          <Trigger
+            key={`${hash}_${title}`}
+            href={hash}
+            focus={hash === currHash}
+          >
+            {title}
+          </Trigger>
+        );
+      })}
     </Wrapper>
   );
 };
@@ -19,16 +30,10 @@ const Wrapper = styled.div`
   position: fixed;
   z-index: 2;
   display: flex;
-  //flex-direction: column;
-  /* left: 20px;
-  top: 100px; */
-  //right: 20px;
-  //top: calc(50% - 150px);
   bottom: 10%;
   margin-bottom: -60px;
   left: 5%;
   margin-left: 95px;
-  gap: 10px;
   font-weight: 600;
   transition: ${({ theme }) => theme.transitionOption};
   background: ${({ theme }) => theme.transparentBackground};
@@ -36,8 +41,10 @@ const Wrapper = styled.div`
   border-radius: 3px;
 `;
 
-const Trigger = styled.a`
+const Trigger = styled.a<{ focus: boolean }>`
+  transition: ${({ theme }) => theme.transitionOption};
+  color: ${(props) => (props.focus ? props.theme.background : null)};
+  background: ${(props) => (props.focus ? props.theme.color : null)};
+  border-radius: 3px;
   padding: 10px;
-  //border-radius: 5px;
-  //background: ${({ theme }) => theme.background};
 `;

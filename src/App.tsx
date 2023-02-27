@@ -12,10 +12,17 @@ import { next } from 'redux/modules/carousel';
 
 function App() {
   const isDark = useSelector<RootState>((state) => state.themeToggle);
+  const { index, imgs } = useSelector((state: RootState) => state.carousel);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setInterval(() => dispatch(next()), 7000);
+
+    console.log('Preload');
+    imgs.forEach((v) => {
+      const myImage = new Image();
+      myImage.src = v.src;
+    });
   }, []);
 
   return (
