@@ -7,14 +7,8 @@ interface queryType {
   house_type: string;
 }
 
-const searchByQuery = async ({ city, town, house_type }: queryType) => {
-  const queryData = {
-    city,
-    town,
-    house_type,
-  };
-
-  const query = Object.entries(queryData)
+const searchByQuery = async (searchData: queryType) => {
+  const query = Object.entries(searchData)
     .map(([key, value]) => {
       return !!value ? `${key}=${value}` : '';
     })
