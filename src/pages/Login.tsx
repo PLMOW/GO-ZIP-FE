@@ -9,20 +9,25 @@ import { useNavigate } from 'react-router-dom';
 import BackgroundImage from 'components/BackgroundImage';
 import imgSrc from 'assets/img/i4.webp';
 import { useCookies } from 'react-cookie';
+import { useDispatch } from 'react-redux';
+import { login } from 'redux/modules/login';
 
 const Login = () => {
-  const [cookies, setCookie] = useCookies();
+  const [_, setCookie] = useCookies();
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormState>();
+  const dispatch = useDispatch();
 
   const { mutate, data, isLoading } = useMutation(loginPost, {
     onSuccess: (res) => {
       const myToken = res.headers['authorization'];
+      const userInfo = res.data;
       setCookie('ACCESS_TOKEN', myToken);
+      dispatch(login(userInfo));
       console.log('Login Query Fulfilled!');
 
       return navigate('/');

@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Load = () => {
-  const [imageFile, setImageFile] = useState("");
+  const [imageFile, setImageFile] = useState('');
   const saveFileImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     // @ts-ignore
     setImageFile(URL.createObjectURL(event.target.files[0]));
@@ -12,18 +12,16 @@ const Load = () => {
 
   const deleteFileImage = () => {
     URL.revokeObjectURL(imageFile);
-    setImageFile("");
+    setImageFile('');
   };
 
-  const structure = ["원룸", "투룸", "아파트", "빌라", "오피스텔"];
-
-  // const [detailAddress, setDetailAddress] = useState('');
+  const structure = ['원룸', '투룸', '아파트', '빌라', '오피스텔'];
 
   const [data, setData] = useState({
-    title: "",
-    img: "",
-    house_type: "",
-    description: "",
+    title: '',
+    img: '',
+    house_type: '',
+    description: '',
   });
   const onChangeDescHandler = (e: any) => {
     setData({
@@ -38,34 +36,30 @@ const Load = () => {
       title: e.target.value,
     });
   };
-  // const onChangeAdressHandler = (e: any) => {
-  //     setData({
-  //         ...data, title: e.target.value
-  //     })
-  // }
+
   const navigate = useNavigate();
 
   return (
     <div
       style={{
-        marginTop: "95px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "0px 50px",
+        marginTop: '95px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '0px 50px',
       }}
     >
       <form
         onSubmit={(e) => {
           e.preventDefault();
           if (!data.description || !data.house_type || !data.title) {
-            return alert("공백이요");
+            return alert('공백이요');
           }
           setData({
-            title: "",
-            img: "",
-            house_type: "",
-            description: "",
+            title: '',
+            img: '',
+            house_type: '',
+            description: '',
           });
           console.log(data);
         }}
@@ -79,13 +73,13 @@ const Load = () => {
         </InputWrapper>
 
         <SelectWrap>
-          <Select style={{ outline: "none" }}>
+          <Select style={{ outline: 'none' }}>
             <Option>서울시</Option>
           </Select>
-          <Select style={{ outline: "none" }}>
+          <Select style={{ outline: 'none' }}>
             <Option>강남구</Option>
           </Select>
-          <Select style={{ outline: "none" }}>
+          <Select style={{ outline: 'none' }}>
             <Option>청담동</Option>
           </Select>
         </SelectWrap>
@@ -96,7 +90,7 @@ const Load = () => {
           <MainImage></MainImage>
           <SmallImgWrap>
             <SmallImgBox>
-              <img alt="sample" src={imageFile} style={{ margin: "auto" }} />
+              <img alt="sample" src={imageFile} style={{ margin: 'auto' }} />
             </SmallImgBox>
             <SmallImgBox></SmallImgBox>
             <SmallImgBox></SmallImgBox>
@@ -108,12 +102,12 @@ const Load = () => {
 
         <div
           style={{
-            marginTop: "20px",
-            width: "100%",
-            height: "60px",
-            display: "flex",
-            alignItems: "center",
-            gap: "20px",
+            marginTop: '20px',
+            width: '100%',
+            height: '60px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '20px',
           }}
         >
           {structure.map((item, i) => {
@@ -139,11 +133,11 @@ const Load = () => {
           value={data.description}
           onChange={onChangeDescHandler}
         ></TextArea>
-        <div style={{ display: "flex", margin: "20px 0", gap: "40px" }}>
+        <div style={{ display: 'flex', margin: '20px 0', gap: '40px' }}>
           <Btn>등록하기</Btn>
           <Btn
             onClick={() => {
-              navigate("/");
+              navigate('/');
             }}
             type="button"
           >
