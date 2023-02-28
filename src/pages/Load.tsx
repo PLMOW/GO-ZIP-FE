@@ -6,6 +6,8 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
 import ADDRESS from 'libs/client/constants/address';
+import { ToastContainer } from 'react-toastify';
+import useToast from 'hooks/useToast';
 
 interface dataForm {
   title: string;
@@ -28,8 +30,7 @@ const Load = () => {
     city: '',
     town: '',
   });
-
-  console.log('data: ', data);
+  const [myToast, sendToast] = useToast();
 
   useEffect(() => {
     routeSpy();
@@ -62,23 +63,22 @@ const Load = () => {
 
   const uploadProduct = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!imgData) return alert('이미지를 등록해주세요!');
+    if (!imgData) return sendToast.image();
     const { title, description, house_type, city, town } = data;
-    if (!data.description) return alert('매물에 대한 설명을 등록해주세요!');
-    if (!data.house_type) return alert('매물의 타입을 선택해주세요!');
-    if (!data.title) return alert('제목을 등록해주세요!');
-    if (!data.city) return alert('(도/시)를 선택해주세요!');
-    if (!data.town) return alert('(구/군)을 등록해주세요!');
+    if (!data.description) return sendToast.description();
+    if (!data.house_type) return sendToast.house_type();
+    if (!data.title) return sendToast.title();
+    if (!data.city) return sendToast.city();
+    if (!data.town) return sendToast.town();
 
     const myFormData = imgData;
     const myData = { title, description, house_type, city, town };
     const json = JSON.stringify(myData);
     const blob = new Blob([json], { type: 'application/json' });
     myFormData.append('data', blob);
-    myFormData.forEach((v: any) => console.log(v));
 
     const cookie = new Cookies();
-    const res = await axios({
+    await axios({
       method: 'POST',
       url: `${process.env.REACT_APP_API_BASE_ROUTE}/api/product`,
       data: myFormData,
@@ -88,8 +88,10 @@ const Load = () => {
       },
     });
 
-    console.log('send :', res);
-    navigate('/');
+    sendToast.fulfilled();
+    setTimeout(() => {
+      navigate('/');
+    }, 1500);
   };
 
   const cityHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -124,6 +126,7 @@ const Load = () => {
         padding: '0px 50px',
       }}
     >
+      <ToastContainer position="bottom-right" theme="light" />
       <Title>매물 등록</Title>
       <form onSubmit={uploadProduct}>
         <InputWrapper>
