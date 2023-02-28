@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import ADDRESS from 'libs/client/constants/address';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useToast from 'hooks/useToast';
-import useQuery from 'react-query';
+import searchByQuery from 'libs/client/api/searchByQuery';
+import { useQuery } from 'react-query';
 
 interface dataForm {
   house_type: string;
@@ -21,6 +22,12 @@ const Search = () => {
   const [myToast, sendToast] = useToast();
   const structure = ['원룸', '투룸', '아파트', '빌라', '오피스텔'];
 
+  const onSearch = () => {
+    const { city, town, house_type } = data;
+    if (!city) return sendToast.city();
+    searchByQuery({ city, town, house_type });
+  };
+
   const cityHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setData({
       ...data,
@@ -32,15 +39,8 @@ const Search = () => {
   const townHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setData({
       ...data,
-      town: e.target.value,
+      town: e.target.value === '--구--' ? '' : e.target.value,
     });
-  };
-
-  const searchByQuery = () => {
-    const { city, town, house_type } = data;
-    if (!city) return sendToast.city();
-
-    console.log(data);
   };
 
   return (
@@ -83,7 +83,7 @@ const Search = () => {
             );
           })}
         </TypeWrapper>
-        <SearchBtn onClick={searchByQuery}>검색</SearchBtn>
+        <SearchBtn onClick={onSearch}>검색</SearchBtn>
       </TopWrapper>
       <ProductsWrapper>
         <SmallImgBox></SmallImgBox>
