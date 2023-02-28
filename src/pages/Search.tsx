@@ -79,7 +79,7 @@ const Search = () => {
   };
 
   return (
-    <Body>
+    <Body id="search">
       <div
         style={{
           overflow: 'hidden',
@@ -220,7 +220,8 @@ const SmallImgBox = styled.div`
 
 const Body = styled.div`
   width: 100vw;
-  height: 200vh;
+  height: 100vh;
+  overflow: auto;
 
   margin: 95px 0;
 `;

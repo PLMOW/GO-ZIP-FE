@@ -1,28 +1,42 @@
 import styled from 'styled-components';
-
-import { useState } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useRouteSpy from 'hooks/useRouteSpy';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { Cookies } from 'react-cookie';
+import ADDRESS from 'libs/client/constants/address';
+import { ToastContainer } from 'react-toastify';
+import useToast from 'hooks/useToast';
+
+interface dataForm {
+  title: string;
+  description: string;
+  house_type: string;
+  city: string;
+  town: string;
+}
 
 const Load = () => {
-  const [imageFile, setImageFile] = useState('');
-  const saveFileImage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // @ts-ignore
-    setImageFile(URL.createObjectURL(event.target.files[0]));
-  };
-
-  const deleteFileImage = () => {
-    URL.revokeObjectURL(imageFile);
-    setImageFile('');
-  };
-
+  const route = useLocation();
+  const navigate = useNavigate();
+  const routeSpy = useRouteSpy(route.pathname, '/');
   const structure = ['원룸', '투룸', '아파트', '빌라', '오피스텔'];
-
-  const [data, setData] = useState({
+  const [imgData, setImgData] = useState<any>();
+  const [data, setData] = useState<dataForm>({
     title: '',
-    img: '',
-    house_type: '',
     description: '',
+    house_type: '',
+    city: '',
+    town: '',
   });
+  const [myToast, sendToast] = useToast();
+  const [imgSrc, setImgSrc] = useState<string | ArrayBuffer | null>('');
+
+  useEffect(() => {
+    routeSpy();
+  }, []);
+
   const onChangeDescHandler = (e: any) => {
     setData({
       ...data,
@@ -37,7 +51,83 @@ const Load = () => {
     });
   };
 
-  const navigate = useNavigate();
+  const handleUpload = (e: any) => {
+    /* Add */
+    const {
+      target: { files },
+    } = e;
+    const formData = new FormData();
+    for (let i = 0; i <= files.length - 1; i++)
+      formData.append('image', files[i]);
+
+    setImgData((prev: any) => formData);
+
+    /* Priview */
+    let reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+
+    reader.onloadend = () => {
+      const resultImage = reader.result;
+      setImgSrc(resultImage);
+    };
+  };
+
+  const uploadProduct = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!imgData) return sendToast.image();
+    const { title, description, house_type, city, town } = data;
+    if (!data.description) return sendToast.description();
+    if (!data.house_type) return sendToast.house_type();
+    if (!data.title) return sendToast.title();
+    if (!data.city) return sendToast.city();
+    if (!data.town) return sendToast.town();
+
+    const myFormData = imgData;
+    const myData = { title, description, house_type, city, town };
+    const json = JSON.stringify(myData);
+    const blob = new Blob([json], { type: 'application/json' });
+    myFormData.append('data', blob);
+
+    const cookie = new Cookies();
+    await axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_BASE_ROUTE}/api/product`,
+      data: myFormData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `${cookie.get('ACCESS_TOKEN')}`,
+      },
+    });
+
+    sendToast.fulfilled();
+    setTimeout(() => {
+      navigate('/');
+    }, 1500);
+  };
+
+  const cityHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const {
+      target: { value },
+    } = e;
+
+    setData({
+      ...data,
+      city: value,
+    });
+  };
+
+  const townHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const {
+      target: { value },
+    } = e;
+
+    setData({
+      ...data,
+      town: value,
+    });
+  };
 
   return (
     <div
@@ -49,21 +139,9 @@ const Load = () => {
         padding: '0px 50px',
       }}
     >
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (!data.description || !data.house_type || !data.title) {
-            return alert('공백이요');
-          }
-          setData({
-            title: '',
-            img: '',
-            house_type: '',
-            description: '',
-          });
-          console.log(data);
-        }}
-      >
+      <ToastContainer position="bottom-right" theme="light" />
+      <Title>매물 등록</Title>
+      <form onSubmit={uploadProduct}>
         <InputWrapper>
           <Input
             value={data.title}
@@ -73,36 +151,53 @@ const Load = () => {
         </InputWrapper>
 
         <SelectWrap>
-          <Select style={{ outline: 'none' }}>
-            <Option>서울시</Option>
+          <Select onChange={cityHandler} style={{ outline: 'none' }}>
+            {Object.keys(ADDRESS).map((v) => (
+              <Option>{v}</Option>
+            ))}
           </Select>
-          <Select style={{ outline: 'none' }}>
-            <Option>강남구</Option>
-          </Select>
-          <Select style={{ outline: 'none' }}>
-            <Option>청담동</Option>
+          <Select onChange={townHandler} style={{ outline: 'none' }}>
+            {ADDRESS[data.city] &&
+              Object.values(ADDRESS[data.city]).map((v) => (
+                <Option>{v}</Option>
+              ))}
           </Select>
         </SelectWrap>
-        {/* <InputWrapper > 
-                <Input value={''} onChange={onChangeAdressHandler} placeholder='상세주소'></Input> 
-            </InputWrapper> */}
         <ImageContainer>
-          <MainImage></MainImage>
-          <SmallImgWrap>
-            <SmallImgBox>
-              <img alt="sample" src={imageFile} style={{ margin: 'auto' }} />
-            </SmallImgBox>
-            <SmallImgBox></SmallImgBox>
-            <SmallImgBox></SmallImgBox>
-          </SmallImgWrap>
+          <ImageInput htmlFor="image">
+            {!imgData ? (
+              <Svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                width="100"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
+                />
+              </Svg>
+            ) : typeof imgSrc === 'string' ? (
+              <Img src={imgSrc} />
+            ) : (
+              'qwe'
+            )}
+          </ImageInput>
+          <input
+            type="file"
+            id="image"
+            hidden
+            accept="image/png, image/gif, image/jpeg"
+            onChange={handleUpload}
+          ></input>
         </ImageContainer>
-        {/* 이미지파일 올리기 실험 */}
-        <input type="file" accept="img/*" onChange={saveFileImage}></input>
-        {/* <Btn onClick={handleButtonClick} type='button'>파일 업로드</Btn> */}
-
         <div
           style={{
-            marginTop: '20px',
+            marginTop: '10px',
             width: '100%',
             height: '60px',
             display: 'flex',
@@ -113,7 +208,8 @@ const Load = () => {
           {structure.map((item, i) => {
             return (
               <Btn
-                key={i}
+                isFocus={item === data.house_type}
+                key={`${item}_${i}`}
                 onClick={() => {
                   setData({
                     ...data,
@@ -134,113 +230,138 @@ const Load = () => {
           onChange={onChangeDescHandler}
         ></TextArea>
         <div style={{ display: 'flex', margin: '20px 0', gap: '40px' }}>
-          <Btn>등록하기</Btn>
-          <Btn
+          <LastBtn>등록하기</LastBtn>
+          <LastBtn
             onClick={() => {
               navigate('/');
             }}
             type="button"
           >
             취소하기
-          </Btn>
+          </LastBtn>
         </div>
       </form>
     </div>
   );
 };
 
-export default Load;
+export default memo(Load);
 
-const Option = styled.option``;
+const Option = styled.option`
+  color: black;
+`;
+
+const Img = styled.img`
+  object-fit: cover;
+  width: 100%;
+`;
 
 const TextArea = styled.textarea`
-  /* marginTop: '30px', width: '97%', height: '300px', padding: '20px 10px 0px', border: '1px solid lightgray' */
-  margin-top: 30px;
+  margin-top: 10px;
   width: 97%;
+  border-radius: 3px;
   height: 300px;
   padding: 20px 10px 0px;
   border: 1px solid lightgray;
+  max-width: 557px;
+  min-width: 557px;
+  min-height: 200px;
   outline: none;
 `;
 
-// const BtnWrap = styled.div`
-//      /* backgroundColor: 'red', marginTop: '30px', width: '100%',
-//             height: '60px', display: 'flex', alignItems: 'center' */
-// background-color: red;
-// margin-top: 30px;
-// width: 100%;
-// height: 60px;
-// display: flex;
-// align-items: center;
-// `
+interface BtnProps {
+  isFocus?: boolean;
+}
 
-const Btn = styled.button`
-  /* style={{ width: '100px', height: '40px', border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }} */
+const Title = styled.div`
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: -20px;
+`;
+
+const Btn = styled.button<BtnProps>`
   font-size: 0.8rem;
   letter-spacing: -0.2px;
   width: 100px;
   height: 40px;
   border: 1px solid lightgray;
   display: flex;
+  border-radius: 3px;
+  font-weight: 600;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  background: ${(props) =>
+    props.isFocus ? props.theme.pointColor : props.theme.transparentColor};
+  color: ${({ theme }) => theme.background};
+  transition: ${({ theme }) => theme.transitionOption};
+`;
 
-  &:active {
-    opacity: 0.7;
+const LastBtn = styled.button`
+  font-size: 0.8rem;
+  letter-spacing: -0.2px;
+  width: 100%;
+  height: 40px;
+  border: 1px solid lightgray;
+  display: flex;
+  border-radius: 3px;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: ${(props) => props.theme.transparentColor};
+  color: ${({ theme }) => theme.background};
+  transition: ${({ theme }) => theme.transitionOption};
+  :hover {
+    cursor: pointer;
+    background: ${({ theme }) => theme.pointColor};
   }
 `;
 
-const MainImage = styled.div`
-  /* style={{ width: '500px', height: '400px', backgroundColor: 'green' }} */
-  width: 500px;
+/* ImageUpload */
+const ImageInput = styled.label`
+  overflow: hidden;
+  width: 578px;
   height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid lightgray;
+  border-radius: 5px;
+  background: white;
+  transition: ${({ theme }) => theme.transitionOption};
+  :hover {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.3);
+  }
+`;
+
+const Svg = styled.svg`
+  color: lightgray;
 `;
 
 const ImageContainer = styled.div`
-  /* marginTop: '40px', display:
-                'flex', gap: '10px' */
-
-  margin-top: 40px;
   display: flex;
   gap: 10px;
-`;
-const SmallImgWrap = styled.div`
-  /* width: '200px', height: '400px', backgroundColor: 'red', display: 'flex', justifyContent: 'center', flexDirection: 'column' */
-  width: 200px;
-  height: 400px;
-  border: 1px solid lightgray;
-
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-`;
-const SmallImgBox = styled.div`
-  /* width: '80%', height: '30%', backgroundColor: 'white', margin: '20px' */
-  margin: 20px;
-  width: 80%;
-  height: 30%;
-  border: 1px solid lightgray;
-  overflow: hidden;
 `;
 
 const SelectWrap = styled.div`
   margin: 10px 0 0;
   display: flex;
-  /* justify-content: center; */
   justify-content: flex-start;
   gap: 20px;
   width: 100%;
   height: 50px;
 `;
 const Select = styled.select`
+  color: ${({ theme }) => theme.color};
   width: 100px;
   height: 40px;
   text-align: center;
   background-color: inherit;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid ${({ theme }) => theme.color};
+  margin-bottom: 10px;
 `;
 
 const Input = styled.input`
@@ -255,22 +376,10 @@ const InputWrapper = styled.div`
   border-radius: 3px;
   background-color: white;
   border: 1px solid lightgray;
-  width: 70%;
+  width: 100%;
   height: 35px;
   margin-top: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
-
-// const MainBody = styled.div`
-// position: relative;
-// top: 95px;
-// width:100vw;
-// height: 100vh;
-// `
-
-// const Container = styled.div`
-//  position   : relative;
-// margin-left: 40px;
-// `
