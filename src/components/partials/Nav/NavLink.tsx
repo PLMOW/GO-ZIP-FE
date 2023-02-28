@@ -18,7 +18,7 @@ const NavLink = ({ href, value }: navLinkProps) => {
       onMouseLeave={() => setIsHover(false)}
     >
       <Link to={href}>
-        <Btn>{value}</Btn>
+        <Btn route={router.pathname}>{value}</Btn>
       </Link>
       <AnimatePresence>
         {router.pathname === href ? (
@@ -41,14 +41,16 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
-const Btn = styled.div`
-  color: rgba(122, 122, 122, 1);
+const Btn = styled.div<{ route: string }>`
+  color: ${(props) => {
+    return props.route === '/' ? '#F5F6F7' : 'rgba(122, 122, 122, 1)';
+  }};
   font-weight: 600;
   transition: ease-in-out 0.1s;
   box-sizing: border-box;
   height: 30px;
   :hover {
-    color: ${({ theme }) => theme.color};
+    color: ${({ theme }) => theme.pointColor};
   }
 `;
 
