@@ -27,6 +27,10 @@
   - [ ] delete 기능 구현
 
 - [ ] Carousel useEffect 수정
+- [ ] Carousel 텍스트 작성
+- [ ] Hash Scroll 페이지 채우기
+- [ ] Nav 간소화(SignIn 빼기)
+- [ ] Nav 색상 변경 및 가시성 올리기
 
 ### Home
 
