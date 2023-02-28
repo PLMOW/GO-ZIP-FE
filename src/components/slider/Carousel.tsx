@@ -3,7 +3,6 @@ import CarouselComponent from './CarouselComponent';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { AnimatePresence } from 'framer-motion';
-import { useEffect } from 'react';
 
 const Carousel = () => {
   const { index, imgs } = useSelector((state: RootState) => state.carousel);

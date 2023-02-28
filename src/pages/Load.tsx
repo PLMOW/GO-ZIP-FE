@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Load = () => {
@@ -36,11 +36,7 @@ const Load = () => {
       title: e.target.value,
     });
   };
-  // const onChangeAdressHandler = (e: any) => {
-  //     setData({
-  //         ...data, title: e.target.value
-  //     })
-  // }
+
   const navigate = useNavigate();
 
   return (

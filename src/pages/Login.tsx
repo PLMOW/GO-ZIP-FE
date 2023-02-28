@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import BackgroundImage from 'components/BackgroundImage';
 import imgSrc from 'assets/img/i4.webp';
 import { useCookies } from 'react-cookie';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
   const [cookies, setCookie] = useCookies();

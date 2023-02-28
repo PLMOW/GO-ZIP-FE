@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import NavLink from './NavLink';
 import ToggleBtn from './ThemeToggle';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Nav = () => {
   const navigate = useNavigate();
