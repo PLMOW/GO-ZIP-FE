@@ -1,10 +1,18 @@
 import styled from 'styled-components';
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useRouteSpy from 'hooks/useRouteSpy';
+import { useLocation } from 'react-router-dom';
 
 const Load = () => {
+  const route = useLocation();
+  const routeSpy = useRouteSpy(route.pathname, '/');
   const [imageFile, setImageFile] = useState('');
+
+  useEffect(() => {
+    routeSpy();
+  }, []);
+
   const saveFileImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     // @ts-ignore
     setImageFile(URL.createObjectURL(event.target.files[0]));
@@ -23,6 +31,7 @@ const Load = () => {
     house_type: '',
     description: '',
   });
+
   const onChangeDescHandler = (e: any) => {
     setData({
       ...data,
@@ -83,9 +92,6 @@ const Load = () => {
             <Option>청담동</Option>
           </Select>
         </SelectWrap>
-        {/* <InputWrapper > 
-                <Input value={''} onChange={onChangeAdressHandler} placeholder='상세주소'></Input> 
-            </InputWrapper> */}
         <ImageContainer>
           <MainImage></MainImage>
           <SmallImgWrap>
@@ -154,7 +160,6 @@ export default Load;
 const Option = styled.option``;
 
 const TextArea = styled.textarea`
-  /* marginTop: '30px', width: '97%', height: '300px', padding: '20px 10px 0px', border: '1px solid lightgray' */
   margin-top: 30px;
   width: 97%;
   height: 300px;
@@ -163,19 +168,7 @@ const TextArea = styled.textarea`
   outline: none;
 `;
 
-// const BtnWrap = styled.div`
-//      /* backgroundColor: 'red', marginTop: '30px', width: '100%',
-//             height: '60px', display: 'flex', alignItems: 'center' */
-// background-color: red;
-// margin-top: 30px;
-// width: 100%;
-// height: 60px;
-// display: flex;
-// align-items: center;
-// `
-
 const Btn = styled.button`
-  /* style={{ width: '100px', height: '40px', border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }} */
   font-size: 0.8rem;
   letter-spacing: -0.2px;
   width: 100px;
@@ -192,7 +185,6 @@ const Btn = styled.button`
 `;
 
 const MainImage = styled.div`
-  /* style={{ width: '500px', height: '400px', backgroundColor: 'green' }} */
   width: 500px;
   height: 400px;
   border: 1px solid lightgray;
