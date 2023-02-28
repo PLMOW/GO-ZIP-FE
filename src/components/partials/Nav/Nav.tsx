@@ -11,8 +11,6 @@ const Nav = () => {
   const loginData = useSelector((state: RootState) => state.login);
   const { isLogin } = loginData;
 
-  console.log(loginData);
-
   return (
     <Wrapper>
       <LeftContainer>

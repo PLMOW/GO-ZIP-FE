@@ -94,11 +94,25 @@ const Search = () => {
   };
 
   return (
+<<<<<<< HEAD
     <Body>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           console.log(data);
+=======
+    <Body id="search">
+      <div
+        style={{
+          overflow: 'hidden',
+          width: '94%',
+          height: '40vh',
+          border: '1px solid lightgray',
+          padding: '60px 30px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+>>>>>>> upstream/main
         }}
       >
         <div
@@ -267,7 +281,8 @@ const SmallImgBox = styled.div`
 
 const Body = styled.div`
   width: 100vw;
-  height: 200vh;
+  height: 100vh;
+  overflow: auto;
 
   margin: 95px 0;
 `;

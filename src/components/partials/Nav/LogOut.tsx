@@ -12,6 +12,7 @@ const LogOut = () => {
   const logoutHandler = () => {
     dispatch(logout());
     removeCookie('ACCESS_TOKEN');
+    localStorage.removeItem('userInfo');
     navigate('/');
   };
 
