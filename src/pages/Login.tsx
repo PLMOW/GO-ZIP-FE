@@ -26,7 +26,12 @@ const Login = () => {
     onSuccess: (res) => {
       const myToken = res.headers['authorization'];
       const userInfo = res.data;
-      setCookie('ACCESS_TOKEN', myToken);
+      let validUntil = new Date();
+      validUntil.setHours(new Date().getHours() + 1);
+      setCookie('ACCESS_TOKEN', myToken, {
+        path: '/',
+        expires: validUntil,
+      });
       dispatch(login(userInfo));
       console.log('Login Query Fulfilled!');
 
