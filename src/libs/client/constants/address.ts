@@ -1,4 +1,8 @@
-const address = Object.freeze({
+interface AddressType {
+  [key: string]: Readonly<string[]>;
+}
+
+const ADDRESS: Readonly<AddressType> = Object.freeze({
   서울특별시: Object.freeze([
     '종로구',
     '중구',
@@ -240,4 +244,4 @@ const address = Object.freeze({
   제주특별자치도: Object.freeze(['제주시', '서귀포시']),
 });
 
-export default address;
+export default ADDRESS;
