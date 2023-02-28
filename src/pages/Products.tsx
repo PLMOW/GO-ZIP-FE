@@ -103,17 +103,21 @@ const Search = () => {
         <SearchBtn onClick={onSearch}>검색</SearchBtn>
       </TopWrapper>
       <ProductsWrapper>
-        <SmallImgBox></SmallImgBox>
-        <SmallImgBox></SmallImgBox>
-        <SmallImgBox></SmallImgBox>
-        <SmallImgBox></SmallImgBox>
-        <SmallImgBox></SmallImgBox>
-        <SmallImgBox></SmallImgBox>
-        <SmallImgBox></SmallImgBox>
-        <SmallImgBox></SmallImgBox>
-        <SmallImgBox></SmallImgBox>
-        <SmallImgBox></SmallImgBox>
-        <SmallImgBox></SmallImgBox>
+        {data ? (
+          data?.data.map((v: any) => {
+            const { title, description, house_type, city } = v;
+            return (
+              <SmallImgBox>
+                <div>title : {title}</div>
+                <div>city : {city}</div>
+                <div>type : {house_type}</div>
+                <div>description : {description}</div>
+              </SmallImgBox>
+            );
+          })
+        ) : (
+          <>12</>
+        )}
       </ProductsWrapper>
     </Body>
   );
