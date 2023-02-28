@@ -4,42 +4,59 @@ import ADDRESS from 'libs/client/constants/address';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useToast from 'hooks/useToast';
+import { STRUCTURE, SCOPE } from 'libs/client/constants/address';
 import searchByQuery from 'libs/client/api/searchByQuery';
 import { useQuery } from 'react-query';
+import { resolve } from 'path';
 
-interface dataForm {
+interface searchDataForm {
   house_type: string;
   city: string;
   town: string;
 }
 
 const Search = () => {
-  const [data, setData] = useState<dataForm>({
-    city: '',
-    town: '',
-    house_type: '',
-  });
   const [myToast, sendToast] = useToast();
-  const structure = ['원룸', '투룸', '아파트', '빌라', '오피스텔'];
+  const [searchData, setData] = useState<searchDataForm>({
+    city: SCOPE.EMPTY_STRING,
+    town: SCOPE.EMPTY_STRING,
+    house_type: SCOPE.EMPTY_STRING,
+  });
+  const { data, isLoading, refetch } = useQuery(
+    ['search', searchData],
+    () => searchByQuery(searchData),
+    {
+      refetchOnWindowFocus: false,
+      enabled: false,
+    }
+  );
+
+  console.log('!!! :', data);
 
   const onSearch = () => {
-    const { city, town, house_type } = data;
+    const { city } = searchData;
     if (!city) return sendToast.city();
-    searchByQuery({ city, town, house_type });
+    refetch();
   };
 
   const cityHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setData({
-      ...data,
-      city: e.target.value === '--도 / 시--' ? '' : e.target.value,
-      town: '',
+      ...searchData,
+      city:
+        e.target.value === SCOPE.CITY_DEFAULT
+          ? SCOPE.EMPTY_STRING
+          : e.target.value,
+      town: SCOPE.EMPTY_STRING,
     });
   };
 
   const townHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setData({
-      ...data,
-      town: e.target.value === '--구--' ? '' : e.target.value,
+      ...searchData,
+      town:
+        e.target.value === SCOPE.TOWN_DEFAULT
+          ? SCOPE.EMPTY_STRING
+          : e.target.value,
     });
   };
 
@@ -57,22 +74,22 @@ const Search = () => {
           </Select>
           <Select onChange={townHandler} style={{ outline: 'none' }}>
             <option>--구--</option>
-            {ADDRESS[data.city] &&
-              Object.values(ADDRESS[data.city]).map((v) => (
+            {ADDRESS[searchData.city] &&
+              Object.values(ADDRESS[searchData.city]).map((v) => (
                 <Option key={v}>{v}</Option>
               ))}
           </Select>
         </SelectWrap>
         <TypeWrapper>
-          {structure.map((item, i) => {
+          {STRUCTURE.map((item, i) => {
             return (
               <RadioComp
-                isFocus={item === data.house_type}
+                isFocus={item === searchData.house_type}
                 htmlFor={`${item}_${i}`}
                 key={`${item}_${i}`}
                 onClick={() => {
                   setData({
-                    ...data,
+                    ...searchData,
                     house_type: item,
                   });
                 }}
