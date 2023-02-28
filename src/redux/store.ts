@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import themeToggle from './modules/themeToggle';
 import carousel from './modules/carousel';
-import isLogin from './modules/isLogin';
+import login from './modules/login';
 
 const store = configureStore({
-  reducer: { themeToggle, carousel, isLogin },
+  reducer: { themeToggle, carousel, login },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
