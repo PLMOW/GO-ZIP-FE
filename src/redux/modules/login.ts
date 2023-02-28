@@ -5,12 +5,12 @@ export interface userDataState {
   email: string;
 }
 
-export interface isLoginState {
+export interface loginState {
   isLogin: boolean;
   userData: undefined | userDataState;
 }
 
-const isLoginSlicer = createSlice({
+const loginSlicer = createSlice({
   name: 'isLoginSlicer',
   initialState: { isLogin: false, userData: undefined },
   reducers: {
@@ -25,5 +25,5 @@ const isLoginSlicer = createSlice({
   },
 });
 
-export default isLoginSlicer.reducer;
-export const { login, logout } = isLoginSlicer.actions;
+export default loginSlicer.reducer;
+export const { login, logout } = loginSlicer.actions;
