@@ -1,11 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export interface userDataState {
+  nickname: string;
+  email: string;
+}
+
+export interface isLoginState {
+  isLogin: boolean;
+  userData: undefined | userDataState;
+}
+
 const isLoginSlicer = createSlice({
   name: 'isLoginSlicer',
-  initialState: false,
+  initialState: { isLogin: false, userData: undefined },
   reducers: {
-    login: (state) => true,
-    logout: (state) => false,
+    login: (state, action) => {
+      state.isLogin = true;
+      state.userData = action.payload;
+    },
+    logout: (state) => {
+      state.isLogin = false;
+      state.userData = undefined;
+    },
   },
 });
 
