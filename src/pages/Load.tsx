@@ -108,13 +108,10 @@ const Load = () => {
   };
 
   const cityHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const {
-      target: { value },
-    } = e;
-
     setData({
       ...data,
-      city: value,
+      city: e.target.value === '--도 / 시--' ? '' : e.target.value,
+      town: '',
     });
   };
 
@@ -152,14 +149,16 @@ const Load = () => {
 
         <SelectWrap>
           <Select onChange={cityHandler} style={{ outline: 'none' }}>
+            <option>--도 / 시--</option>
             {Object.keys(ADDRESS).map((v) => (
-              <Option>{v}</Option>
+              <Option key={v}>{v}</Option>
             ))}
           </Select>
           <Select onChange={townHandler} style={{ outline: 'none' }}>
+            <option>--구--</option>
             {ADDRESS[data.city] &&
               Object.values(ADDRESS[data.city]).map((v) => (
-                <Option>{v}</Option>
+                <Option key={v}>{v}</Option>
               ))}
           </Select>
         </SelectWrap>
@@ -183,9 +182,7 @@ const Load = () => {
               </Svg>
             ) : typeof imgSrc === 'string' ? (
               <Img src={imgSrc} />
-            ) : (
-              'qwe'
-            )}
+            ) : null}
           </ImageInput>
           <input
             type="file"
@@ -353,6 +350,7 @@ const SelectWrap = styled.div`
   width: 100%;
   height: 50px;
 `;
+
 const Select = styled.select`
   color: ${({ theme }) => theme.color};
   width: 100px;
