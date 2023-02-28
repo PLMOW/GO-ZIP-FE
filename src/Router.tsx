@@ -4,8 +4,8 @@ import Login from 'pages/Login';
 import Signin from 'pages/Signin';
 import Test from 'pages/Test';
 import Products from 'pages/Products';
+import Product from 'pages/Product';
 import Load from 'pages/Load';
-import Search from 'pages/Search';
 
 const Router = () => {
   return (
@@ -14,8 +14,8 @@ const Router = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signin" element={<Signin />} />
       <Route path="/test" element={<Test />} />
-      <Route path="/product/search" element={<Search />} />
-      <Route path="/product" element={<Products />} />
+      <Route path="/products" element={<Products />} />
+      <Route path="/product" element={<Product />} />
       <Route path="/product/load" element={<Load />} />
     </Routes>
   );

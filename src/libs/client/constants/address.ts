@@ -2,6 +2,20 @@ interface AddressType {
   [key: string]: Readonly<string[]>;
 }
 
+export const STRUCTURE = Object.freeze([
+  '원룸',
+  '투룸',
+  '아파트',
+  '빌라',
+  '오피스텔',
+]);
+
+export const SCOPE = Object.freeze({
+  CITY_DEFAULT: '--도 / 시--' as const,
+  TOWN_DEFAULT: '--구--' as const,
+  EMPTY_STRING: '' as const,
+});
+
 const ADDRESS: Readonly<AddressType> = Object.freeze({
   서울특별시: Object.freeze([
     '종로구',
