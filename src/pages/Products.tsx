@@ -157,7 +157,6 @@ const Select = styled.select`
   border: none;
   border-bottom: 2px solid ${({ theme }) => theme.color};
   margin-bottom: 10px;
-  font-weight: 600;
 `;
 
 const Title = styled.div`
