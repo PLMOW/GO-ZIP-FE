@@ -42,8 +42,8 @@ const Nav = () => {
         {isLogin ? (
           <>
             <LogOut />
-            <NavLink value={'매물등록'} href={'/product/load'} />
             <NavLink value={'매물확인'} href={'/products'} />
+            <NavLink value={'매물등록'} href={'/products/load'} />
           </>
         ) : (
           <>
