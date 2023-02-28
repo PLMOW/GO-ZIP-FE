@@ -47,10 +47,12 @@ const Image = styled.div<{ imgSrc: string }>`
   width: 100%;
   object-fit: cover;
   background-image: linear-gradient(
-      210deg,
+      10deg,
       rgba(222, 222, 222, 0),
       rgba(222, 222, 222, 0),
-      rgba(0, 0, 0, 0.6)
+      rgba(222, 222, 222, 0),
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.4)
     ),
     url(${({ imgSrc }) => imgSrc});
 `;
