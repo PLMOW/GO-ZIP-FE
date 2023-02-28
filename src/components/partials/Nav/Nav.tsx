@@ -2,9 +2,16 @@ import styled from 'styled-components';
 import NavLink from './NavLink';
 import ToggleBtn from './ThemeToggle';
 import { useNavigate } from 'react-router-dom';
+import LogOut from 'components/partials/Nav/LogOut';
+import { useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
 
 const Nav = () => {
   const navigate = useNavigate();
+  const loginData = useSelector((state: RootState) => state.login);
+  const { isLogin } = loginData;
+
+  console.log(loginData);
 
   return (
     <Wrapper>
@@ -34,9 +41,17 @@ const Nav = () => {
       <RightContainer>
         <ToggleBtn />
         <NavLink value={'Home'} href={'/'} />
-        <NavLink value={'LogIn'} href={'/login'} />
-        <NavLink value={'SignIn'} href={'/signin'} />
-        <NavLink value={'상품등록'} href={'/product/load'} />
+        {isLogin ? (
+          <>
+            <LogOut />
+            <NavLink value={'상품등록'} href={'/product/load'} />
+          </>
+        ) : (
+          <>
+            <NavLink value={'LogIn'} href={'/login'} />
+            <NavLink value={'SignIn'} href={'/signin'} />
+          </>
+        )}
       </RightContainer>
     </Wrapper>
   );
