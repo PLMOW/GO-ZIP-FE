@@ -116,7 +116,7 @@ const Search = () => {
             );
           })
         ) : (
-          <>12</>
+          <None>검색 결과 없음</None>
         )}
       </ProductsWrapper>
     </Body>
@@ -124,6 +124,8 @@ const Search = () => {
 };
 
 export default Search;
+
+const None = styled.div``;
 
 const Body = styled.div`
   width: 100vw;
