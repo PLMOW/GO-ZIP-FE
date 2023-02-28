@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import loginPost from 'libs/client/api/loginPost';
+import loginPost from 'libs/client/api/login';
 import { motion } from 'framer-motion';
 import { FormState } from 'libs/client/types/formType';
 import ReactHookInput from 'components/form/ReactHookInput';
