@@ -27,6 +27,7 @@ const Login = () => {
       const myToken = res.headers['authorization'];
       const userInfo = res.data;
       let validUntil = new Date();
+      localStorage.setItem('userInfo', JSON.stringify(userInfo));
       validUntil.setHours(new Date().getHours() + 1);
       setCookie('ACCESS_TOKEN', myToken, {
         path: '/',
