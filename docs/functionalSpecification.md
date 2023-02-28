@@ -21,6 +21,12 @@
   - [x] login여부에 따른 렌더링
 - [ ] 검색 페이지 구현
   - [ ] 검색 창에서 query 담아서 보내주기(API 명세서)
+- [ ] detail 페이지 구현
+
+  - [ ] 수정 기능 구현
+  - [ ] delete 기능 구현
+
+- [ ] Carousel useEffect 수정
 
 ### Home
 
