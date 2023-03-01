@@ -41,7 +41,9 @@ const Product = () => {
     }
     return;
   };
-  const onEditButtonHandler = () => {};
+  const onEditButtonHandler = () => {
+    navigate('/products/load');
+  };
   // const getProduct = async () => {
   //   const cookie = new Cookies();
   //   await axios({
