@@ -28,9 +28,18 @@ export const ChatContainer = ({}) => {
     });
   }, [contents]);
 
-  const handleEnter = (username: string, content: string) => {
-    const newMessage: message = { username, content };
-    stompClient.send('/chat/room/123', {}, JSON.stringify(newMessage));
+  const handleEnter = () => {
+    stompClient.send(
+      '/chat/room',
+      {},
+      JSON.stringify({
+        sender: 'pengoose',
+        message: 'Messaaaaaage',
+        status: 'MESSAGE',
+        type: 'ENTER',
+        roomId: '123',
+      })
+    );
     setMessage('');
   };
 
@@ -40,6 +49,13 @@ export const ChatContainer = ({}) => {
 
   return (
     <div id="chat" className={'container'}>
+      <button
+        onClick={() => {
+          handleEnter();
+        }}
+      >
+        123123123
+      </button>
       <ChatPresenter
         contents={contents}
         handleEnter={handleEnter}
