@@ -106,7 +106,24 @@ const Search = () => {
               ))}
             </ProductsWrapper>
           ) : (
-            <None>검색 결과 없음</None>
+            <None>
+              <Svg
+                width="200"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                />
+              </Svg>
+              <NoneText>검색 결과 없음</NoneText>
+            </None>
           )}
         </>
       ) : (
@@ -118,12 +135,30 @@ const Search = () => {
 
 export default Search;
 
-const None = styled.div``;
+const None = styled.div`
+  display: flex;
+  font-size: 30px;
+  height: calc(100% - 341px);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+`;
+
+const NoneText = styled.div`
+  position: absolute;
+  top: 400px;
+`;
+
+const Svg = styled.svg`
+  position: absolute;
+  top: 200px;
+  color: ${({ theme }) => theme.color};
+`;
 
 const Body = styled.div`
   width: 100vw;
   height: 100vh;
-  overflow: auto;
+  overflow-x: hidden;
 `;
 
 const SearchBtn = styled.div`
@@ -203,6 +238,7 @@ const ProductsWrapper = styled.div`
   justify-content: center;
   grid-template-columns: repeat(3, 1fr);
   gap: 50px;
+  overflow: hidden;
 `;
 
 const RadioComp = styled.label<{ isFocus: boolean }>`
