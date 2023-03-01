@@ -29,11 +29,12 @@ const Right = () => {
 export default Right;
 
 const Svg = styled.svg`
-  color: rgba(222, 222, 222);
+  color: white;
   opacity: 0.65;
   transition: ${({ theme }) => theme.transitionOption};
   :hover {
     cursor: pointer;
     opacity: 1;
+    color: ${({ theme }) => theme.pointColor};
   }
 `;
