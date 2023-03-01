@@ -9,13 +9,21 @@ interface CarouselTextProps {
 }
 
 const CarouselText = ({ textData }: CarouselTextProps) => {
-  const { mainTitle, subTitle } = textData;
+  const { mainTitle, subTitle, pointTitle } = textData;
   return (
     <Wrapper>
       <Left />
       <TextWrapper>
-        <MainText>{mainTitle}</MainText>
-        <SubText>{subTitle}</SubText>
+        <SubText>
+          <Point>{pointTitle ? pointTitle[1] : ''}</Point>
+          {subTitle}
+          <Point>{pointTitle ? pointTitle[2] : ''}</Point>
+        </SubText>
+
+        <MainText>
+          <Point>{pointTitle ? pointTitle[0] : ''}</Point>
+          {mainTitle}
+        </MainText>
       </TextWrapper>
       <Right />
     </Wrapper>
@@ -34,15 +42,19 @@ const Wrapper = styled(motion.div)`
   color: white;
 `;
 
+const Point = styled.span`
+  color: ${({ theme }) => theme.pointColor};
+`;
+
 const TextWrapper = styled.div`
   margin-bottom: -5px;
 `;
 
-const MainText = styled.div`
+const SubText = styled.div`
   padding-bottom: 5px;
-  font-size: 70px;
+  font-size: 50px;
 `;
 
-const SubText = styled.div`
-  font-size: 120px;
+const MainText = styled.div`
+  font-size: 80px;
 `;

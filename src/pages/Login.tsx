@@ -11,6 +11,8 @@ import imgSrc from 'assets/img/i4.webp';
 import { useCookies } from 'react-cookie';
 import { useDispatch } from 'react-redux';
 import { login } from 'redux/modules/login';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [_, setCookie] = useCookies();
@@ -34,11 +36,25 @@ const Login = () => {
         expires: validUntil,
       });
       dispatch(login(userInfo));
-      console.log('Login Query Fulfilled!');
-
-      return navigate('/');
+      toast.success('Login Query Fulfilled!', {
+        autoClose: 3000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setTimeout(() => {
+        navigate('/');
+      }, 1500);
     },
     onError: (err) => {
+      toast.error('Login Query Rejected', {
+        autoClose: 3000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       console.log('Login Query Rejected');
     },
   });
@@ -50,6 +66,7 @@ const Login = () => {
 
   return (
     <>
+      <ToastContainer />
       <BackgroundImage src={imgSrc} />
       <Container>
         <TopWrapper>

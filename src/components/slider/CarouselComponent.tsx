@@ -2,10 +2,13 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import CarouselText from './CarouselText';
 
-export type textDataType = {
-  mainTitle: string;
-  subTitle: string;
-};
+type Title = string;
+
+export interface textDataType {
+  mainTitle: Title;
+  subTitle: Title;
+  pointTitle?: Title[];
+}
 
 interface CarouselComponentProps {
   imgSrc: string;
@@ -38,16 +41,16 @@ const carouselVariants = {
 const Wrapper = styled(motion.div)`
   position: absolute;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
 `;
 
 const Image = styled.div<{ imgSrc: string }>`
   position: absolute;
   height: 100vh;
-  width: 100%;
-  object-fit: cover;
+  width: 100vw;
+  background-size: cover;
   background-image: linear-gradient(
-      10deg,
+      180deg,
       rgba(222, 222, 222, 0),
       rgba(222, 222, 222, 0),
       rgba(222, 222, 222, 0),

@@ -6,6 +6,7 @@ import Test from 'pages/Test';
 import Products from 'pages/Products';
 import Product from 'pages/Product';
 import Load from 'pages/Load';
+import ChatRoom from 'pages/Chat/ChatRoom';
 
 const Router = () => {
   return (
@@ -17,6 +18,7 @@ const Router = () => {
       <Route path="/products" element={<Products />} />
       <Route path="/products/load" element={<Load />} />
       <Route path="/products/:id" element={<Product />} />
+      <Route path="/chat/:id" element={<ChatRoom />} />
     </Routes>
   );
 };
