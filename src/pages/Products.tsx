@@ -31,11 +31,7 @@ const Search = () => {
     }
   );
 
-  const onSearch = () => {
-    const { city } = searchData;
-    refetch();
-  };
-
+  const onSearch = () => refetch();
   const cityHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setData({
       ...searchData,
