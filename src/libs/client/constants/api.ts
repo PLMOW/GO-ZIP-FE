@@ -3,6 +3,7 @@
 export const END_POINT = Object.freeze({
   LOG_IN: '/api/login' as const,
   SIGN_UP: '/api/signup' as const,
+  SEARCH: (query: string) => `api/product/search?${query}` as const,
 });
 
 type MethodType = 'get' | 'post' | 'put' | 'delete';

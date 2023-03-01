@@ -17,16 +17,27 @@
 - [x] 쿠키값에 따른 status field 선언
 - [x] url로 강제접근할 경우 토큰값 확인해서 예외처리하기.
 - [x] 시/군/구 데이터 노가다 & Constant 선언
-- [ ] 등록 페이지 구현
+- [x] 등록 페이지 구현
   - [x] login여부에 따른 렌더링
-- [ ] 검색 페이지 구현
-  - [ ] 검색 창에서 query 담아서 보내주기(API 명세서)
+- [x] 검색 페이지 구현
+  - [x] 검색 창에서 query 담아서 보내주기(API 명세서)
+  - [x] 받아온 데이터 뿌려주기
 - [ ] detail 페이지 구현
 
   - [ ] 수정 기능 구현
   - [ ] delete 기능 구현
 
 - [ ] Carousel useEffect 수정
+- [ ] Carousel 텍스트 작성
+- [ ] Hash Scroll 페이지 채우기
+- [ ] Nav 간소화(SignIn 빼기)
+- [x] Nav 색상 변경 및 가시성 올리기
+
+### products
+
+- [ ] 결과물에 Product 컴포넌트에 동적 라우팅 할당
+- [ ] 검색결과 없음 svg로 변경
+- [ ] media-query 적용
 
 ### Home
 
