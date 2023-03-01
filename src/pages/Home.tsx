@@ -1,8 +1,7 @@
 import Carousel from 'components/slider/Carousel';
 import styled from 'styled-components';
 import FloatNav from 'components/partials/FloatNav/FloatNav';
-import { HASH_ROUTE } from 'libs/client/constants/hashRoute';
-import Chatting from 'pages/Chatting';
+import { ChatContainer } from 'pages/Chat/Container/ChatContainer';
 import Content_1 from 'pages/Content/Content_1';
 import Content_2 from 'pages/Content/Content_2';
 
@@ -16,7 +15,7 @@ const Home = () => {
         </Container>
         <Content_1 />
         <Content_2 />
-        <Chatting />
+        <ChatContainer />
       </Wrapper>
     </>
   );
