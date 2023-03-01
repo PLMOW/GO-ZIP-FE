@@ -8,7 +8,6 @@ import Router from './Router';
 import Nav from 'components/partials/Nav/Nav';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { next } from 'redux/modules/carousel';
 import { Cookies } from 'react-cookie';
 import { login } from 'redux/modules/login';
 
@@ -18,17 +17,15 @@ function App() {
   const dispatch = useDispatch();
   const cookie = new Cookies();
 
-  if (cookie.get('ACCESS_TOKEN')) {
-    const stringData = localStorage.getItem('userInfo');
-    if (stringData) {
-      const userInfo = JSON.parse(stringData);
-      dispatch(login(userInfo));
-    }
-  }
-
   useEffect(() => {
-    /* Carousel Infinity Animate */
-    setInterval(() => dispatch(next()), 7000);
+    /* Check Cookie */
+    if (cookie.get('ACCESS_TOKEN')) {
+      const stringData = localStorage.getItem('userInfo');
+      if (stringData) {
+        const userInfo = JSON.parse(stringData);
+        dispatch(login(userInfo));
+      }
+    }
 
     /* Image preLoad */
     imgs.forEach((v) => {

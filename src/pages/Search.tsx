@@ -94,198 +94,157 @@ const Search = () => {
   };
 
   return (
-    <Body>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(data);
-        }}
-      >
-        <div
-          style={{
-            overflow: 'hidden',
-            width: '100%',
-            height: '60vh',
-            border: '1px solid lightgray',
-
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <div
-            style={{
-              fontSize: '1.4rem',
-              fontWeight: '500',
-              letterSpacing: '-.8px',
-              marginTop: '50px',
-            }}
-          >
-            고승유의 집구하기
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center ',
-              width: '100%',
-              gap: '20px',
-              marginTop: '20px',
-            }}
-          >
-            <SelectWrap>
-              <Select
-                onChange={onChangeCityHandler}
-                style={{ outline: 'none' }}
-              >
-                <option>--시선택--</option>
-                {Object.entries(address).map(([key]) => {
-                  return <option>{key}</option>;
-                })}
-              </Select>
-
-              <Select
-                onChange={onChangeTownHandler}
-                style={{ outline: 'none' }}
-              >
-                <option>--구선택--</option>
-                {guName?.map((item) => {
-                  return <option>{item}</option>;
-                })}
-              </Select>
-            </SelectWrap>
-          </div>
-          <div style={{ display: 'flex', marginTop: '20px', gap: '20px' }}>
-            {structure.map((item, i) => {
-              return (
-                <Btn
-                  type="button"
-                  key={i}
-                  onClick={() => addHouseTypeButtonClickHandler(item)}
-                >
-                  {item}
-                </Btn>
-              );
+    <Body id="search">
+      <TopWrapper>
+        <Title>고승유의 집구하기</Title>
+        <SelectWrap>
+          <Select onChange={onChangeCityHandler} style={{ outline: 'none' }}>
+            <option>--시선택--</option>
+            {address?.map((item, i) => {
+              return <option key={i}>{item.city}</option>;
             })}
-          </div>
-          <div style={{ marginTop: '20px' }}>
-            <SearchBtn type="submit"> 검색하기</SearchBtn>
-          </div>
-        </div>
-      </form>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <div
-          style={{
-            width: '95vw',
-            display: 'flex',
+          </Select>
 
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-
-            margin: '30px 20px 0',
-            // position: 'relative',
-          }}
-        >
-          <SmallImgBox></SmallImgBox>
-          <SmallImgBox></SmallImgBox>
-          <SmallImgBox></SmallImgBox>
-          <SmallImgBox></SmallImgBox>
-          <SmallImgBox></SmallImgBox>
-          <SmallImgBox></SmallImgBox>
-          <SmallImgBox></SmallImgBox>
-          <SmallImgBox></SmallImgBox>
-          <SmallImgBox></SmallImgBox>
+          <Select onChange={onChangeTownHandler} style={{ outline: 'none' }}>
+            <option>--구선택--</option>
+            {gu_name[0]?.map((item, i) => {
+              return <option key={i}>{item}</option>;
+            })}
+          </Select>
+          <Select style={{ outline: 'none' }}>
+            <option>--동선택--</option>
+          </Select>
+        </SelectWrap>
+        <div style={{ display: 'flex', marginTop: '20px', gap: '20px' }}>
+          {structure.map((item, i) => {
+            return (
+              <Btn
+                key={`${item}${i}`}
+                onClick={() => addHouseTypeButtonClickHandler(item)}
+              >
+                {item}
+              </Btn>
+            );
+          })}
         </div>
-      </div>
+      </TopWrapper>
+      <ProductsWrapper>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+        <SmallImgBox></SmallImgBox>
+      </ProductsWrapper>
     </Body>
   );
 };
 
 export default Search;
 
-// const Btn = styled.button`
-//   /* style={{ width: '100px', height: '40px', border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }} */
-//   font-size: 0.8rem;
-//   letter-spacing: -0.2px;
-//   width: 100px;
-//   height: 40px;
-//   border: 1px solid lightgray;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   cursor: pointer;
-
-//   &:active {
-//     opacity: 0.7;
-//   }
-// `;
-const SearchBtn = styled.button`
-  font-size: 0.8rem;
-  letter-spacing: -0.2px;
-  width: 230px;
-  height: 40px;
-  border: 1px solid;
-  background-color: black;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  &:active {
-    opacity: 0.7;
-  }
-`;
-
-const Btn = styled.button`
-  /* style={{ width: '100px', height: '40px', border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }} */
-  font-size: 0.8rem;
-  letter-spacing: -0.2px;
-  width: 100px;
-  height: 40px;
-  border: 1px solid lightgray;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  &:active {
-    opacity: 0.7;
-  }
-`;
-const Input = styled.input`
-  width: 100%;
-  border: none;
-  outline: none;
-  background-color: inherit;
-`;
-const SmallImgBox = styled.div`
-  position: static;
-  width: 280px;
-  height: 280px;
-  border: 1px solid lightgray;
-  margin: 20px 20px 0;
-`;
-
 const Body = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: auto;
-
-  margin: 95px 0;
+  background: tomato;
 `;
+
 const SelectWrap = styled.div`
   margin: 10px 0 0;
   display: flex;
-  /* justify-content: center; */
   justify-content: center;
   gap: 20px;
   width: 100%;
   height: 50px;
 `;
+
 const Select = styled.select`
+  color: ${({ theme }) => theme.color};
   width: 100px;
   height: 40px;
   text-align: center;
   background-color: inherit;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid ${({ theme }) => theme.color};
+  margin-bottom: 10px;
+`;
+
+const Title = styled.div`
+  font-size: 1.65rem;
+  font-weight: 600;
+  letter-spacing: -0.8px;
+  margin-bottom: 15px;
+`;
+
+const TopWrapper = styled.div`
+  display: flex;
+  background: ${({ theme }) => theme.background};
+  padding: 100px 0 40px 0;
+  border-bottom: solid lightgray 1px;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ProductsWrapper = styled.div`
+  max-height: calc(100% - 402px);
+  color: ${({ theme }) => theme.color};
+  background: ${({ theme }) => theme.background};
+  padding: 50px;
+  overflow-y: auto;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  @media screen {
+  }
+`;
+
+const SmallImgBox = styled.div`
+  height: 400px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  min-width: 350px;
+`;
+
+const Btn = styled.button`
+  font-size: 0.8rem;
+  letter-spacing: -0.2px;
+  width: 100px;
+  height: 40px;
+  border: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:active {
+    opacity: 0.7;
+  }
 `;

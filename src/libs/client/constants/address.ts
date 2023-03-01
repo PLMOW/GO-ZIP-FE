@@ -2,6 +2,20 @@ interface AddressType {
   [key: string]: Readonly<string[]>;
 }
 
+export const STRUCTURE = Object.freeze([
+  '원룸',
+  '투룸',
+  '아파트',
+  '빌라',
+  '오피스텔',
+]);
+
+export const SCOPE = Object.freeze({
+  CITY_DEFAULT: '--도 / 시--' as const,
+  TOWN_DEFAULT: '--구--' as const,
+  EMPTY_STRING: '' as const,
+});
+
 const ADDRESS: Readonly<AddressType> = Object.freeze({
   서울특별시: Object.freeze([
     '종로구',
@@ -73,7 +87,7 @@ const ADDRESS: Readonly<AddressType> = Object.freeze({
   광주광역시: Object.freeze(['동구', '서구', '남구', '북구', '광산구']),
   대전광역시: Object.freeze(['동구', '중구', '서구', '유성구', '대덕구']),
   울산광역시: Object.freeze(['중구', '남구', '동구', '북구', '울주군']),
-  세종특별자치시: [],
+  세종특별자치시: ['전체'],
   경기도: Object.freeze([
     '수원시',
     '고양시',
