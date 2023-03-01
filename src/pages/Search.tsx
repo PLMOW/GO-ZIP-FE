@@ -1,56 +1,71 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import address from 'libs/client/constants/address';
 
 const Search = () => {
+  const [btnNumber, setBtnNumber] = useState(0);
   const structure = ['원룸', '투룸', '아파트', '빌라', '오피스텔'];
-
-  const address = [
-    {
-      city: '서울시',
-      town: {
-        강남구: ['대치동', '삼성동'],
-        마포구: ['상수동', '합정동'],
-        구로구: ['구로동'],
-      },
-    },
-    {
-      city: '대전시',
-      town: {
-        중구: ['용두동', '부사동'],
-      },
-    },
-    {
-      city: '대구시',
-      town: {
-        달서구: ['성당동', '죽전동', '신당동'],
-      },
-    },
-    {
-      city: '부산시',
-      town: {
-        해운대구: ['송정동'],
-        영도구: ['남항동', '신성동'],
-      },
-    },
-  ];
+  Object.entries(address).map(([key, item]) => {
+    console.log(`key: ${key} item :${item}`);
+  });
+  // const address = [
+  //   {
+  //     city: '서울시',
+  //     town: {
+  //       강남구: ['대치동', '삼성동'],
+  //       마포구: ['상수동', '합정동'],
+  //       구로구: ['구로동'],
+  //     },
+  //   },
+  //   {
+  //     city: '대전시',
+  //     town: {
+  //       중구: ['용두동', '부사동'],
+  //     },
+  //   },
+  //   {
+  //     city: '대구시',
+  //     town: {
+  //       달서구: ['성당동', '죽전동', '신당동'],
+  //     },
+  //   },
+  //   {
+  //     city: '부산시',
+  //     town: {
+  //       해운대구: ['송정동'],
+  //       영도구: ['남항동', '신성동'],
+  //     },
+  //   },
+  // ];
 
   const [data, setData] = useState({
     city: '',
     town: '',
-    street: '',
+
     house_type: '',
   });
+  console.log(data);
+  const foundData = Object.entries(address)
+    .filter(([key, item]) => {
+      if (key === data.city) {
+        return item;
+      }
+    })
+    .map((item) => {
+      return item[1];
+    });
+  const guName = foundData[0];
 
-  const newArr = address.filter((item) => {
-    if (item.city) {
-      return item.city === data.city;
-    }
-    return;
-  });
+  // const newArr = address.filter((item) => {
+  //   if (item.city) {
+  //     return item.city === data.city;
+  //   }
+  //   return;
+  // });
 
-  const gu_name = newArr.map((item) => {
-    return Object.keys(item.town);
-  });
+  // const gu_name = newArr.map((item) => {
+  //   return Object.keys(item.town);
+  // });
 
   const onChangeTownHandler = (e: any) => {
     const { value } = e.target;
@@ -65,7 +80,7 @@ const Search = () => {
   const onChangeCityHandler = (e: any) => {
     const { value } = e.target;
 
-    // setData({ ...data, city: value });
+    setData({ ...data, city: value });
     setData((data) => {
       // 중요: 값을 업데이트할 때 `this.state` 대신 `state` 값을 읽어옵니다.
       return { ...data, city: value, town: '' };
