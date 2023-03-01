@@ -1,26 +1,24 @@
 import styled from 'styled-components';
 import CarouselComponent from './CarouselComponent';
-import { RootState } from 'redux/store';
 import { AnimatePresence } from 'framer-motion';
 import { next } from 'redux/modules/carousel';
+import { RootState } from 'redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import useInterval from 'hooks/useInterval';
 
 const Carousel = () => {
   const dispatch = useDispatch();
   const { index, imgs, intervalRef } = useSelector(
     (state: RootState) => state.carousel
   );
-  const carouselInterval = useInterval(
-    () => dispatch(next()),
-    7000,
-    intervalRef
-  );
 
   /* Handle Carousel Infinity Animate */
   useEffect(() => {
-    carouselInterval();
+    const intervalRef = setInterval(() => dispatch(next()), 7000);
+
+    return () => {
+      clearInterval(intervalRef);
+    };
   }, []);
 
   return (
