@@ -5,7 +5,7 @@ const Chatting = () => {
   const clickHandler = () => {
     console.log('====================');
     //@ts-ignore
-    let sock = new SockJS(`${process.env.REACT_APP_API_BASE_ROUTE}/ws-stomp`);
+    let sock = new SockJS(`${process.env.REACT_APP_API_BASE_ROUTE}/stomp`);
 
     sock.onopen = function () {
       console.log('onopen');
