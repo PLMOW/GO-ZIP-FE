@@ -51,7 +51,6 @@ const Card = styled.div`
   transition: ${({ theme }) => theme.transitionOption};
   box-shadow: 0px 0px 5px ${({ theme }) => theme.transparentColor};
   :hover {
-    background: ${({ theme }) => theme.hoverBackground};
     box-shadow: 0px 0px 15px ${({ theme }) => theme.transparentColor};
   }
 `;
