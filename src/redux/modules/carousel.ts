@@ -6,10 +6,14 @@ import img4 from 'assets/img/i4.webp';
 
 type Title = string;
 
-interface imgsState {
-  src: string;
+export interface textDataType {
   mainTitle: Title;
   subTitle: Title;
+  pointTitle?: Title[];
+}
+
+interface imgsState extends textDataType {
+  src: string;
 }
 
 interface carouselState {
@@ -21,10 +25,30 @@ interface carouselState {
 const initialState: carouselState = {
   index: 0,
   imgs: [
-    { src: img1, mainTitle: 'mainTitle1', subTitle: 'SubTitle1' },
-    { src: img2, mainTitle: 'mainTitle2', subTitle: 'SubTitle2' },
-    { src: img3, mainTitle: 'mainTitle3', subTitle: 'SubTitle3' },
-    { src: img4, mainTitle: 'mainTitle4', subTitle: 'SubTitle4' },
+    {
+      src: img1,
+      pointTitle: ['고집'],
+      subTitle: 'GO-ZIP의',
+      mainTitle: '있는 상품',
+    },
+    {
+      src: img2,
+      pointTitle: ['다이나믹'],
+      subTitle: '궁전부터 지하철 노숙까지',
+      mainTitle: '한 매물들',
+    },
+    {
+      src: img3,
+      pointTitle: ['구독'],
+      subTitle: '매달 다른 집에서',
+      mainTitle: '형 월세 상품',
+    },
+    {
+      src: img4,
+      pointTitle: ['최상'],
+      subTitle: '휴식과 미래를 잇다',
+      mainTitle: '의 작업 공간 ',
+    },
   ],
   intervalRef: null,
 };
