@@ -5,11 +5,12 @@ const Chatting = () => {
   const clickHandler = () => {
     console.log('click');
     //@ts-ignore
-    let chatSock = new SockJS(
-      `${process.env.REACT_APP_API_BASE_ROUTE}/ws/chat`
-    );
+    let sock = new SockJS(`${process.env.REACT_APP_API_BASE_ROUTE}/ws-stomp`);
+    console.log(sock);
 
-    console.log(chatSock);
+    sock.onmessage = function (e: any) {
+      console.log(e.data);
+    };
   };
 
   return (
