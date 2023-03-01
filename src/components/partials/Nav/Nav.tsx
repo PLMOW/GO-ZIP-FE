@@ -12,7 +12,7 @@ const Nav = () => {
   const { isLogin } = loginData;
 
   return (
-    <Wrapper>
+    <>
       <LeftContainer>
         <IconsWrapper>
           <Svg
@@ -52,7 +52,7 @@ const Nav = () => {
           </>
         )}
       </RightContainer>
-    </Wrapper>
+    </>
   );
 };
 
@@ -70,9 +70,23 @@ const Wrapper = styled.div`
 `;
 
 const LeftContainer = styled.div`
+  position: fixed;
+  z-index: 1;
+  padding: 15px;
+  left: 0;
   display: flex;
   align-items: center;
   gap: 10px;
+`;
+
+const RightContainer = styled.div`
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  padding: 15px;
+  display: flex;
+  gap: 16px;
+  margin: 10px 25px 0px 0px;
 `;
 
 const IconsWrapper = styled.div`
@@ -90,12 +104,6 @@ const Title = styled.div`
   :hover {
     cursor: pointer;
   }
-`;
-
-const RightContainer = styled.div`
-  display: flex;
-  gap: 16px;
-  margin: 10px 25px 0px 0px;
 `;
 
 const Svg = styled.svg`
