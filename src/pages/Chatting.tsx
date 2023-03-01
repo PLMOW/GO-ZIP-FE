@@ -3,13 +3,22 @@ import * as SockJS from 'sockjs-client';
 
 const Chatting = () => {
   const clickHandler = () => {
-    console.log('click');
+    console.log('====================');
     //@ts-ignore
     let sock = new SockJS(`${process.env.REACT_APP_API_BASE_ROUTE}/ws-stomp`);
-    console.log(sock);
 
-    sock.onmessage = function (e: any) {
-      console.log(e.data);
+    sock.onopen = function () {
+      console.log('onopen');
+
+      sock.send('Hello, world!');
+    };
+
+    sock.onclose = function () {
+      console.log('onclose');
+    };
+
+    sock.onmessage = function (message: any) {
+      console.log(message.data);
     };
   };
 
