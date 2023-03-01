@@ -98,13 +98,17 @@ const Search = () => {
       </TopWrapper>
 
       {!isLoading ? (
-        <ProductsWrapper>
+        <>
           {data ? (
-            data?.data.map((v: any) => <ProductCard data={v} />)
+            <ProductsWrapper>
+              {data?.data.map((v: any) => (
+                <ProductCard data={v} />
+              ))}
+            </ProductsWrapper>
           ) : (
             <None>검색 결과 없음</None>
           )}
-        </ProductsWrapper>
+        </>
       ) : (
         <Loading />
       )}
@@ -189,6 +193,7 @@ const TopWrapper = styled.div`
 `;
 
 const ProductsWrapper = styled.div`
+  background: teal;
   color: ${({ theme }) => theme.color};
   background: ${({ theme }) => theme.background};
   padding: 50px;
