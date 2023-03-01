@@ -8,6 +8,7 @@ import { STRUCTURE, SCOPE } from 'libs/client/constants/address';
 import searchByQuery from 'libs/client/api/searchByQuery';
 import { useQuery } from 'react-query';
 import ProductCard from 'components/ProductCard';
+import Loading from 'components/Loading';
 
 interface searchDataForm {
   house_type: string;
@@ -95,17 +96,18 @@ const Search = () => {
         </TypeWrapper>
         <SearchBtn onClick={onSearch}>검색</SearchBtn>
       </TopWrapper>
-      <ProductsWrapper>
-        {!isLoading ? (
-          data ? (
+
+      {!isLoading ? (
+        <ProductsWrapper>
+          {data ? (
             data?.data.map((v: any) => <ProductCard data={v} />)
           ) : (
             <None>검색 결과 없음</None>
-          )
-        ) : (
-          <>검색중</>
-        )}
-      </ProductsWrapper>
+          )}
+        </ProductsWrapper>
+      ) : (
+        <Loading />
+      )}
     </Body>
   );
 };
