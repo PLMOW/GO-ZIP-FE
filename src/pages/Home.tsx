@@ -1,6 +1,5 @@
 import Carousel from 'components/slider/Carousel';
 import styled from 'styled-components';
-import Search from './Search';
 import FloatNav from 'components/partials/FloatNav/FloatNav';
 import { HASH_ROUTE } from 'libs/client/constants/hashRoute';
 
@@ -16,7 +15,6 @@ const Home = () => {
 
           return <Content key={`${id}_Content`} isEven={!!(i % 2)} id={id} />;
         })}
-        <Search />
       </Wrapper>
     </>
   );
