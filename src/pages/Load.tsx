@@ -9,7 +9,7 @@ import ADDRESS from 'libs/client/constants/address';
 import { ToastContainer } from 'react-toastify';
 import useToast from 'hooks/useToast';
 
-interface dataForm {
+export interface dataForm {
   title: string;
   description: string;
   house_type: string;

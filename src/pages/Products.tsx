@@ -7,7 +7,7 @@ import useToast from 'hooks/useToast';
 import { STRUCTURE, SCOPE } from 'libs/client/constants/address';
 import searchByQuery from 'libs/client/api/searchByQuery';
 import { useQuery } from 'react-query';
-import { Link } from 'react-router-dom';
+import ProductCard from 'components/ProductCard';
 
 interface searchDataForm {
   house_type: string;
@@ -31,11 +31,8 @@ const Search = () => {
     }
   );
 
-  console.log(data);
-
   const onSearch = () => {
     const { city } = searchData;
-    if (!city) return sendToast.city();
     refetch();
   };
 
@@ -105,22 +102,7 @@ const Search = () => {
       <ProductsWrapper>
         {!isLoading ? (
           data ? (
-            data?.data.map((v: any) => {
-              const { title, description, house_type, city, images } = v;
-              return (
-                <Link key={`${title}_${city}`} to={`${1}`}>
-                  <Card>
-                    <Img src={images[0]} />
-                    <Information>
-                      <div>title : {title}</div>
-                      <div>city : {city}</div>
-                      <div>type : {house_type}</div>
-                      <div>description : {description}</div>
-                    </Information>
-                  </Card>
-                </Link>
-              );
-            })
+            data?.data.map((v: any) => <ProductCard data={v} />)
           ) : (
             <None>검색 결과 없음</None>
           )
@@ -140,31 +122,6 @@ const Body = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: auto;
-`;
-
-const Img = styled.img`
-  height: 300px;
-  border-radius: 5px;
-`;
-
-const Card = styled.div`
-  padding: 10px;
-  height: 400px;
-  gap: 10px;
-  border: 1px solid lightgray;
-  border-radius: 3px;
-  min-width: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Information = styled.div`
-  font-weight: 600;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  gap: 10px;
 `;
 
 const SearchBtn = styled.div`
