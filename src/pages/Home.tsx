@@ -1,8 +1,8 @@
 import Carousel from 'components/slider/Carousel';
 import styled from 'styled-components';
 import FloatNav from 'components/partials/FloatNav/FloatNav';
-import Content_1 from 'pages/Content/Content_1';
-import Content_2 from 'pages/Content/Content_2';
+import Content1 from 'pages/Content/Content_1';
+import Content2 from 'pages/Content/Content2';
 
 const Home = () => {
   return (
@@ -12,8 +12,8 @@ const Home = () => {
         <Container>
           <Carousel />
         </Container>
-        <Content_1 />
-        <Content_2 />
+        <Content1 />
+        <Content2 />
       </Wrapper>
     </>
   );
