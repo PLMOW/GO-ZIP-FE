@@ -23,13 +23,8 @@ const Search = () => {
     town: SCOPE.EMPTY_STRING,
     house_type: SCOPE.EMPTY_STRING,
   });
-  const { data, isLoading, refetch } = useQuery(
-    ['search', searchData],
-    () => searchByQuery(searchData),
-    {
-      refetchOnWindowFocus: false,
-      enabled: false,
-    }
+  const { data, isLoading, refetch } = useQuery(['search', searchData], () =>
+    searchByQuery(searchData)
   );
 
   const onSearch = () => refetch();
