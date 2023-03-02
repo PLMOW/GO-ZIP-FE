@@ -58,7 +58,7 @@ const Product = () => {
 
     setTimeout(() => {
       navigate('/products');
-    }, 1500);
+    }, 1000);
   };
 
   const onEditButtonHandler = () => {
