@@ -6,7 +6,8 @@ import Test from 'pages/Test';
 import Products from 'pages/Products';
 import Product from 'pages/Product';
 import Load from 'pages/Load';
-import ChatRoom from 'pages/Chat/ChatRoom';
+import Edit from 'pages/Edit';
+import { ChatHandler } from 'pages/Chat';
 
 const Router = () => {
   return (
@@ -17,8 +18,9 @@ const Router = () => {
       <Route path="/test" element={<Test />} />
       <Route path="/products" element={<Products />} />
       <Route path="/products/load" element={<Load />} />
+      <Route path="/products/edit" element={<Edit />} />
       <Route path="/products/:id" element={<Product />} />
-      <Route path="/chat/:id" element={<ChatRoom />} />
+      <Route path="/chat/:id" element={<ChatHandler roomId={1} />} />
     </Routes>
   );
 };

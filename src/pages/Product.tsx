@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Cookies } from 'react-cookie';
-
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Cookies } from 'react-cookie';
+import { useQueryClient } from 'react-query';
 
 const Product = () => {
-  // const location = useLocation();
   const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState({
@@ -16,6 +16,8 @@ const Product = () => {
     description: '',
     id: '',
   });
+  const cookie = new Cookies();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     getProduct();
@@ -27,7 +29,6 @@ const Product = () => {
     );
 
     setData({
-      ...data,
       id: result.data.post_id,
       title: result.data.title,
       image: result.data.images,
@@ -36,30 +37,33 @@ const Product = () => {
   };
 
   const onDeleteButtonClickHandler = async () => {
-    if (window.confirm('내용을 삭제하시겠습니까?')) {
-      await axios.delete(`https://sparta-prac-lhb.shop/api/product/${id}`);
-    }
-    return;
+    if (!window.confirm('내용을 삭제하시겠습니까?')) return;
+    await axios({
+      method: 'DELETE',
+      url: `${process.env.REACT_APP_API_BASE_ROUTE}/api/product/${id}`,
+      headers: {
+        Authorization: `${cookie.get('ACCESS_TOKEN')}`,
+      },
+    });
+
+    toast.success('Deleted!', {
+      autoClose: 3000,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+    queryClient.invalidateQueries({ queryKey: 'search' });
+
+    setTimeout(() => {
+      navigate('/products');
+    }, 1000);
   };
+
   const onEditButtonHandler = () => {
-    navigate('/products/load');
+    navigate('/products/edit');
   };
-  // const getProduct = async () => {
-  //   const cookie = new Cookies();
-  //   await axios({
-  //     method: 'GET',
-  //     url: `https://sparta-prac-lhb.shop/api/product/${test.id}`,
-  //     // url: `${process.env.REACT_APP_API_BASE_ROUTE}/api/product/${test.id}`,
-
-  //     headers: {
-  //       Authorization: `${cookie.get('ACCESS_TOKEN')}`,
-  //     },
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   getProduct();
-  // }, []);
 
   return (
     <div
@@ -69,6 +73,7 @@ const Product = () => {
         paddingBottom: '100px',
       }}
     >
+      <ToastContainer />
       <Wrap>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Title>{data.title}</Title>
@@ -122,6 +127,7 @@ const Product = () => {
 };
 
 export default Product;
+
 const Title = styled.div`
   width: 90%;
   height: 40px;

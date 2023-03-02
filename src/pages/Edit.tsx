@@ -8,16 +8,20 @@ import { Cookies } from 'react-cookie';
 import ADDRESS from 'libs/client/constants/address';
 import { ToastContainer } from 'react-toastify';
 import useToast from 'hooks/useToast';
-import { useQueryClient } from 'react-query';
+import { useParams } from 'react-router-dom';
+
 export interface dataForm {
   title: string;
   description: string;
   house_type: string;
   city: string;
   town: string;
+  id?: number;
+  image?: any;
 }
 
 const Load = () => {
+  const { id } = useParams();
   const route = useLocation();
   const navigate = useNavigate();
   const routeSpy = useRouteSpy(route.pathname, '/');
@@ -32,11 +36,28 @@ const Load = () => {
   });
   const [myToast, sendToast] = useToast();
   const [imgSrc, setImgSrc] = useState<string | ArrayBuffer | null>('');
-  const queryClient = useQueryClient();
 
+  console.log(data);
   useEffect(() => {
     routeSpy();
+    getProduct();
   }, []);
+
+  const getProduct = async () => {
+    const res: any = await axios.get(
+      `https://sparta-prac-lhb.shop/api/product/${id}`
+    );
+    const { title, description } = res as {
+      title: string;
+      description: string;
+    };
+
+    setData((prev) => {
+      const newData = { ...prev, title, description };
+
+      return newData;
+    });
+  };
 
   const onChangeDescHandler = (e: any) => {
     setData({
@@ -103,9 +124,8 @@ const Load = () => {
     });
 
     sendToast.fulfilled();
-    queryClient.invalidateQueries({ queryKey: 'search' });
     setTimeout(() => {
-      navigate('/products');
+      navigate('/');
     }, 1500);
   };
 
@@ -132,7 +152,7 @@ const Load = () => {
     <Body>
       <ToastContainer position="bottom-right" theme="light" />
       <TopWrapper>
-        <Title>매물 등록</Title>
+        <Title>매물 정보 수정</Title>
         <form onSubmit={uploadProduct}>
           <InputWrapper>
             <Input

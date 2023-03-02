@@ -43,7 +43,8 @@ const Card = styled.div`
   position: relative;
   height: 400px;
   gap: 10px;
-  min-width: 350px;
+  width: 490px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,7 +60,7 @@ const Title = styled.div`
   position: absolute;
   top: 20px;
   left: 20px;
-  z-index: 3;
+  z-index: 1;
   background: rgba(222, 222, 222, 0.7);
   color: rgba(0, 0, 0, 1);
   backdrop-filter: blur(2px);

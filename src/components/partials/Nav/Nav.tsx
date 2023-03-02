@@ -71,7 +71,7 @@ const Wrapper = styled.div`
 
 const LeftContainer = styled.div`
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   padding: 15px;
   left: 0;
   display: flex;
@@ -81,7 +81,7 @@ const LeftContainer = styled.div`
 
 const RightContainer = styled.div`
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   right: 0;
   padding: 15px;
   display: flex;
