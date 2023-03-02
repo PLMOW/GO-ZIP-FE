@@ -105,7 +105,7 @@ const Load = () => {
     sendToast.fulfilled();
     queryClient.invalidateQueries({ queryKey: 'search' });
     setTimeout(() => {
-      navigate('/');
+      navigate('/products');
     }, 1500);
   };
 
