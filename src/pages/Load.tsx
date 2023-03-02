@@ -8,7 +8,7 @@ import { Cookies } from 'react-cookie';
 import ADDRESS from 'libs/client/constants/address';
 import { ToastContainer } from 'react-toastify';
 import useToast from 'hooks/useToast';
-
+import { useQueryClient } from 'react-query';
 export interface dataForm {
   title: string;
   description: string;
@@ -32,6 +32,7 @@ const Load = () => {
   });
   const [myToast, sendToast] = useToast();
   const [imgSrc, setImgSrc] = useState<string | ArrayBuffer | null>('');
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     routeSpy();
@@ -102,6 +103,7 @@ const Load = () => {
     });
 
     sendToast.fulfilled();
+    queryClient.invalidateQueries({ queryKey: 'search' });
     setTimeout(() => {
       navigate('/');
     }, 1500);

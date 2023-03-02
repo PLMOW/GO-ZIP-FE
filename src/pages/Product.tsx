@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Cookies } from 'react-cookie';
+import { useQueryClient } from 'react-query';
 
 const Product = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Product = () => {
     id: '',
   });
   const cookie = new Cookies();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     getProduct();
@@ -51,10 +53,14 @@ const Product = () => {
       draggable: true,
       progress: undefined,
     });
+
+    queryClient.invalidateQueries({ queryKey: 'search' });
+
     setTimeout(() => {
       navigate('/products');
     }, 1500);
   };
+
   const onEditButtonHandler = () => {
     navigate('/products/edit');
   };
