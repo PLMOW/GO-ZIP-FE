@@ -65,15 +65,11 @@ export const ChatHandler = ({ roomId }: { roomId: number }) => {
 
   return (
     <Wrapper id="chat">
-      <Chat
-        handler={{
-          sendMessage,
-          onClickHandler,
-          textChangeHandler,
-          usernameHandler,
-          text,
-        }}
-      />
+      <div>UserName</div>
+      <input type="text" onChange={usernameHandler} />
+      <div>text</div>
+      <input value={text} type="text" onChange={textChangeHandler} />
+      <Button onClick={onClickHandler}>send</Button>
     </Wrapper>
   );
 };
@@ -86,3 +82,30 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 20px;
 `;
+
+const Button = styled.div`
+  background: black;
+  color: white;
+  padding: 10px;
+  border-radius: 3px;
+  font-weight: 600;
+  transition: ${({ theme }) => theme.transitionOption};
+
+  :hover {
+    cursor: pointer;
+    background: white;
+    color: black;
+  }
+`;
+
+/*
+<Chat
+handler={{
+  sendMessage,
+  onClickHandler,
+  textChangeHandler,
+  usernameHandler,
+  text,
+}}
+/>
+*/
