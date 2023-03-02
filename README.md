@@ -28,7 +28,6 @@
 
 ## 📌 구현기능
 ### FE
-#### Auth
 - 커스텀 Carousel UI
 - UI의 Image가 지연 로딩되는 것을 방지하는 Image PreLoad Chacing 전략
 - Login/LogOut의 함수 컴포넌트의 경우 View를 제외한 로직을 최대한 분리
@@ -41,7 +40,6 @@
 - 현재 Route에 따른 interative motion Navigation
 - HashRoute를 이용한 Scroll Handling
 - GlobalStyle을 이용한 DarkTheme/LightTheme과 전역적으로 사용되는 CSS값 소프트코딩
-- 
 
 ### BE
 - 스프링 시큐리티를 이용한 JWT 로그인
