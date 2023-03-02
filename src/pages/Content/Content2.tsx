@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import imgSrc from 'assets/img/c2.webp';
 
-const Content_1 = () => {
+const Content1 = () => {
   return (
     <Container>
       <Wrapper src={imgSrc} id="content_2"></Wrapper>
@@ -9,7 +9,7 @@ const Content_1 = () => {
   );
 };
 
-export default Content_1;
+export default Content1;
 
 const Container = styled.div`
   display: flex;
