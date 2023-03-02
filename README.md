@@ -11,25 +11,33 @@
 
 ## 스택 
 ### FE
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white"> 
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white"> <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white"> <img src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"> <img src="https://img.shields.io/badge/Framer-0055FF?style=for-the-badge&logo=Framer&logoColor=white">
 
-<img src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"> <img src="https://img.shields.io/badge/React Query-FF4154?style=for-the-badge&logo=React Query&logoColor=white"> <img src="https://img.shields.io/badge/React Hook Form-EC5990?style=for-the-badge&logo=React Hook Form&logoColor=white"> <img src="https://img.shields.io/badge/Framer-0055FF?style=for-the-badge&logo=Framer&logoColor=white"> 
+<img src="https://img.shields.io/badge/React Query-FF4154?style=for-the-badge&logo=React Query&logoColor=white"> <img src="https://img.shields.io/badge/React Hook Form-EC5990?style=for-the-badge&logo=React&logoColor=white"> 
 
 ### BE
 <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white">  <img src="https://img.shields.io/badge/SpringSecurity-6DB33F?style=for-the-badge&logo=Spring Security&logoColor=white">  <img src="https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white">  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">  
 
-<img src="https://img.shields.io/badge/AmazonRDS-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white">  <img src="https://img.shields.io/badge/AmazonEC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white">  <img src="https://img.shields.io/badge/AmazonS3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white">   
+<img src="https://img.shields.io/badge/AmazonRDS-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white"> <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white">  
 
-<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white">  <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white">  
+### Deploy
+ <img src="https://img.shields.io/badge/AmazonEC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white">  <img src="https://img.shields.io/badge/AmazonS3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white">  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white"> 
 
-## 📌  구현기능 
-- 스프링 시큐리티를 이용한 JWT 로그인  
-- 게시글 CRUD  
-- S3를 이용한 이미지 저장기능  
-- QueryDSL을 이용한 동적인 조건부 검색기능  
-- 예외처리  
-  - GlobalExceptionHandler로 controller의 예외를 전역적으로 처리  
-  - ExceptionHandlerFilter를 추가하여 시큐리티에서 JWT검증간의 예외를 일괄적으로 처리  
+### configuration management
+<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"> <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white">
+
+## 📌 구현기능
+### FE
+- Input validation에 대한 실시간 에러 렌더링
+- 개발자도구를 이용해 Input Vadliation 변경을 막는 HTML과 JS Engine 단의 2중 Custom Validation
+- 커스텀 Carousel UI  
+- 게시글 CRUD
+- Token이 없는 유저의 특정 Route 접속을 막기 위한 UseRouteSpy Hook
+- React-query를 이용한 커스텀 Caching
+- 현재 Route에 따른 interative motion Navigation
+- HashRoute를 이용한 Scroll Handling
+
+
 
 ## 🖼️  ERD  
 
