@@ -9,6 +9,8 @@ import { useQueryClient } from 'react-query';
 
 const Product = () => {
   const navigate = useNavigate();
+  const [currId, setCurrId] = useState();
+  const [memberId, setMemberId] = useState();
   const { id } = useParams();
   const [data, setData] = useState({
     title: '',
@@ -21,6 +23,9 @@ const Product = () => {
 
   useEffect(() => {
     getProduct();
+
+    const res = localStorage.getItem('userInfo');
+    if (res) setCurrId(JSON.parse(res).member_id);
   }, []);
 
   const getProduct = async () => {
@@ -28,11 +33,16 @@ const Product = () => {
       `https://sparta-prac-lhb.shop/api/product/${id}`
     );
 
+    const {
+      data: { post_id, title, images, description },
+    } = result;
+
+    setMemberId(result.data.member_id);
     setData({
-      id: result.data.post_id,
-      title: result.data.title,
-      image: result.data.images,
-      description: result.data.description,
+      id: post_id,
+      title: title,
+      image: images,
+      description: description,
     });
   };
 
@@ -113,14 +123,18 @@ const Product = () => {
             </div>
           </DescWrap>
         </div>
-        <BtnWrap gap="17px">
-          <Btn onClick={onEditButtonHandler} size="small">
-            수정
-          </Btn>
-          <Btn onClick={onDeleteButtonClickHandler} size="small">
-            삭제
-          </Btn>
-        </BtnWrap>
+        {currId == memberId ? (
+          <BtnWrap gap="17px">
+            <Btn onClick={onEditButtonHandler} size="small">
+              수정
+            </Btn>
+            <Btn onClick={onDeleteButtonClickHandler} size="small">
+              삭제
+            </Btn>
+          </BtnWrap>
+        ) : (
+          ''
+        )}
       </Wrap>
     </div>
   );
