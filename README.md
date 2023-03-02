@@ -28,15 +28,30 @@
 
 ## 📌 구현기능
 ### FE
-- Input validation에 대한 실시간 에러 렌더링
-- 개발자도구를 이용해 Input Vadliation 변경을 막는 HTML과 JS Engine 단의 2중 Custom Validation
-- 커스텀 Carousel UI  
-- 게시글 CRUD
-- Token이 없는 유저의 특정 Route 접속을 막기 위한 UseRouteSpy Hook
+#### Auth
+- 커스텀 Carousel UI
+- UI의 Image가 지연 로딩되는 것을 방지하는 Image PreLoad Chacing 전략
+- Login/LogOut의 함수 컴포넌트의 경우 View를 제외한 로직을 최대한 분리
+- Input validation에 대한 에러 실시간 렌더링
+- 유저 & 게시글 CRUD 구현
+- Cookie와 LocalStorage를 이용한 따른 Access Token 관리 
+- 개발자도구를 이용해 Input Vadliation 변경을 막는 HTML과 JS단의 2중 Custom Validation
 - React-query를 이용한 커스텀 Caching
+- Token이 없는 유저의 특정 Route 접속을 막기 위한 useRouteSpy Hook
 - 현재 Route에 따른 interative motion Navigation
 - HashRoute를 이용한 Scroll Handling
+- GlobalStyle을 이용한 DarkTheme/LightTheme과 전역적으로 사용되는 CSS값 소프트코딩
+- 
 
+### BE
+- 스프링 시큐리티를 이용한 JWT 로그인
+- HTTPS(Vercel)과 HTTP(AWS EC2) 통신을 위한 SSL 적용 및 보안 강화
+- 게시글 CRUD  
+- S3를 이용한 이미지 저장기능  
+- QueryDSL을 이용한 동적인 조건부 검색기능  
+- 예외처리  
+  - GlobalExceptionHandler로 controller의 예외를 전역적으로 처리  
+  - ExceptionHandlerFilter를 추가하여 시큐리티에서 JWT검증간의 예외를 일괄적으로 처리  
 
 
 ## 🖼️  ERD  
